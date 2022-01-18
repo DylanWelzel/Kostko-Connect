@@ -17,7 +17,11 @@ department_routes = Blueprint('departments', __name__)
 @department_routes.route('/', methods=['GET'])
 @login_required
 def get_departments():
-    departments = Department.query.all()
+    all_departments = Department.query.order_by(Department.name.asc()).all()
+    departments = []
+    if (all_departments):
+        for i in range(len(all_departments)):
+            departments.append(all_departments[i].to_dict())
     return {'departments': departments}
 
 # edit department route

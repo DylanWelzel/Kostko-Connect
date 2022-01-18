@@ -1,5 +1,5 @@
 const ONE_DEPARTMENT = "departments/ONE_DEPARTMENT";
-const SET_DEPARTMENTS = "departments/SET_DEPARTMENTS";
+const GET_DEPARTMENTS = "departments/GET_DEPARTMENTS";
 const ADD_DEPARTMENT = "departments/ADD_DEPARTMENT";
 const EDIT_DEPARTMENT = "departments/EDIT_DEPARTMENT";
 const DELETE_DEPARTMENT = "departments/DELETE_DEPARTMENT";
@@ -12,7 +12,7 @@ export const getOneDepartment = (department) => ({
 
 export const getDepartments = (departments) => {
     return {
-        type: SET_DEPARTMENTS,
+        type: GET_DEPARTMENTS,
         payload: departments,
     };
 };
@@ -39,10 +39,11 @@ const deleteDepartment = (department) => {
 
 //Get Departments
 export const getDepartmentsThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/departments`);
+    const res = await fetch(`/api/departments/`);
 
     if (res.ok) {
         const body = await res.json();
+        console.log(body.departments)
         dispatch(getDepartments(body.departments));
         return body;
     } else {
@@ -50,7 +51,7 @@ export const getDepartmentsThunk = () => async (dispatch) => {
     }
 };
 // Get ONE department
-export const getDepartmentsThunk = (departmentId) => async (dispatch) => {
+export const getSingleDepartmentThunk = (departmentId) => async (dispatch) => {
     const res = await fetch(`/api/departments/${departmentId}`);
 
     if (res.ok) {
@@ -103,9 +104,9 @@ export const deleteDepartmentThunk = (departmentId) => async (dispatch) => {
 };
 
 
-export default function orgReducer(state = [], action) {
+export default function departmentReducer(state = [], action) {
     switch (action.type) {
-        case SET_DEPARTMENTS:
+        case GET_DEPARTMENTS:
             return action.payload;
         case ADD_DEPARTMENT:
             return [...state, action.payload];
