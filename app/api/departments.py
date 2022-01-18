@@ -81,7 +81,7 @@ def newDepartment():
 def getTicket(departmentId):
     print('hiiiiiii')
     print(Ticket.query.all())
-    allTickets = Ticket.query.filter_by(
+    allTickets = Ticket.query.order_by(Ticket.id.asc()).filter_by(
         department_id=departmentId).join(Department).all()
     tickets = []
     if(allTickets):

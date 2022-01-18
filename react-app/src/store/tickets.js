@@ -52,13 +52,13 @@ export const postTicketThunk = (userId, departmentId, item_name, location, descr
 };
 
 //Edit ticket
-export const editTicketThunk = (ticketInfo, ticketId) => async (dispatch) => {
+export const editTicketThunk = (item_name, location, description, ticketId) => async (dispatch) => {
     const res = await fetch(`/api/tickets/${ticketId}/edit`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ticketInfo }),
+        body: JSON.stringify({ item_name, location, description }),
     })
     if (res.ok) {
         const ticket = await res.json()
@@ -68,7 +68,7 @@ export const editTicketThunk = (ticketInfo, ticketId) => async (dispatch) => {
 
 
 //Delete ticket
-export const removeTicket = (ticketId) => async (dispatch) => {
+export const deleteTicketThunk = (ticketId) => async (dispatch) => {
     const res = await fetch(`/api/tickets/${ticketId}/delete`, {
         method: "DELETE",
     });

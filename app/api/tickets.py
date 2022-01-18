@@ -29,8 +29,9 @@ def deleteTicket(ticketId):
 def edit_Ticket(ticketId):
     ticket = Ticket.query.get(ticketId)
     form = TicketForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        ticket.item_name = form.name.data,
+        ticket.item_name = form.item_name.data,
         ticket.location = form.location.data,
         ticket.description = form.description.data,
         db.session.commit()
