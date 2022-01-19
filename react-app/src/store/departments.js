@@ -38,7 +38,6 @@ export const getDepartmentsThunk = () => async (dispatch) => {
 
     if (res.ok) {
         const body = await res.json();
-        console.log(body.departments)
         dispatch(getDepartments(body.departments));
         return body;
     } else {
@@ -68,7 +67,6 @@ export const editDepartmentThunk = (name, id) => async (dispatch) => {
         body: JSON.stringify({ name }),
     });
     const data = await response.json();
-    console.log(data, 'dataaaaa edit dept')
     dispatch(editDepartment(data));
     return data;
 };

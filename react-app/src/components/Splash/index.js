@@ -4,7 +4,6 @@ import React from 'react';
 
 function Splash() {
     const login = () => {
-        console.log('123')
         return <NavLink to='/login' />;
     }
 

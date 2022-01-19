@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -9,6 +10,10 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const usernameErrors = errors?.filter(error => error.includes('Username'))
+  const emailErrors = errors?.filter(error => error.includes('email'))
+  const passwordErrors = errors?.filter(error => error.includes('Password'))
+
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -17,11 +22,14 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        setErrors(data)
+        return setErrors(data)
       }
+    } else if (password !== repeatPassword) {
+      return setErrors([
+        "Passwords need to match!",
+      ]);
     }
   };
-
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -49,53 +57,66 @@ const SignUpForm = () => {
       </div>
       <div className="bodyContent">
         <div className="signInTitle">
-          <h2>Sign In</h2>
+          <h2>Create Account</h2>
         </div>
         <form className='signInForm' onSubmit={onSignUp}>
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
             <label htmlFor='username'>Username</label>
             <input
+              required
               type='text'
               name='username'
               // placeholder='Username'
               onChange={updateUsername}
               value={username}
             ></input>
+            <div>
+              {usernameErrors && usernameErrors.map((error, ind) => (
+                <div className='errors' key={ind}>{error}</div>
+              ))}
+            </div>
           </div>
           <div>
             <label htmlFor='email'>Email</label>
             <input
+              required
               type='text'
               name='email'
               // placeholder='Email'
               onChange={updateEmail}
               value={email}
             ></input>
+            <div>
+              {emailErrors && emailErrors.map((error, ind) => (
+                <div className='errors' key={ind}>{error}</div>
+              ))}
+            </div>
           </div>
           <div>
             <label htmlFor='password'>Password</label>
             <input
+              required
               type='password'
               name='password'
               // placeholder='Password'
               onChange={updatePassword}
               value={password}
             ></input>
+            <div>
+              {passwordErrors && passwordErrors.map((error, ind) => (
+                <div className='errors' key={ind}>{error}</div>
+              ))}
+            </div>
           </div>
           <div>
             <label htmlFor='repeat_password'>Confirm Password</label>
             <input
+              required
               type='password'
               name='repeat_password'
               // placeholder='Confirm Password'
               onChange={updateRepeatPassword}
               value={repeatPassword}
-              required={true}
             ></input>
           </div>
           <button type='submit'>Sign Up</button>
@@ -107,7 +128,7 @@ const SignUpForm = () => {
             </NavLink>
           </div>
         </form>
-      </div>
+      </div >
     </>
   );
 };

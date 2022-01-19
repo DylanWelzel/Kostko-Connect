@@ -10,6 +10,10 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const emailErrors = errors?.filter(error => error.includes('email'))
+  const passwordErrors = errors?.filter(error => error.includes('Password'))
+
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -40,30 +44,42 @@ const LoginForm = () => {
           <h2>Sign In</h2>
         </div>
         <form className='signInForm' onSubmit={onLogin}>
-          <div>
+          {/* <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
-          </div>
+          </div> */}
           <div>
             <label htmlFor='email'>Email</label>
             <input
+              required
               name='email'
               type='text'
               // placeholder='Email'
               value={email}
               onChange={updateEmail}
             />
+            <div>
+              {emailErrors && emailErrors.map((error, ind) => (
+                <div className='errors' key={ind}>{error}</div>
+              ))}
+            </div>
           </div>
           <div>
             <label htmlFor='password'>Password</label>
             <input
+              required
               name='password'
               type='password'
               // placeholder='Password'
               value={password}
               onChange={updatePassword}
             />
+            <div>
+              {passwordErrors && passwordErrors.map((error, ind) => (
+                <div className='errors' key={ind}>{error}</div>
+              ))}
+            </div>
             <button type='submit'>Login</button>
             <div className='divider'></div>
             <div className='newToCostco'>New To Costco?</div>
