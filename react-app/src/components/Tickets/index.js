@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { deleteTicketThunk, editTicketThunk, postTicketThunk, readTicketsThunk } from "../../store/tickets";
 import SingleTicket from "../SingleTicket";
 import AddTicketModal from "../AddTicketModal";
+import EditTicketModal from "../EditTicketModal";
 
 function Tickets() {
     const dispatch = useDispatch();
@@ -31,6 +32,8 @@ function Tickets() {
                                 location={ticket.location}
                                 description={ticket.description}
                                 departmentId={ticket.department_id}
+                                setIsEditOpen={setIsEditOpen}
+                                setEditId={setEditId}
                             />
                         </div>
                     )
@@ -42,7 +45,7 @@ function Tickets() {
                 </button>
             </div>
             {isOpen && <AddTicketModal setIsOpen={setIsOpen} />}
-            {/* {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} />} */}
+            {isEditOpen && <EditTicketModal editId={editId} setIsOpen={setIsEditOpen} />}
         </>
     );
 }

@@ -4,18 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 
-function SingleTicket({ departmentId, ticketId, itemName, location, description }) {
+function SingleTicket({ departmentId, ticketId, itemName, location, description, setIsEditOpen, setEditId }) {
     const dispatch = useDispatch()
+
+    const editTrigger = () => {
+        setIsEditOpen(true)
+        setEditId(ticketId)
+    }
 
 
     return (
-
-        <NavLink className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
-            <h1>{itemName}</h1>
-            <div>{location}</div>
-            <div>{description}</div>
-        </NavLink>
-
+        <>
+            <NavLink className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
+                <h1>{itemName}</h1>
+                <div>{location}</div>
+                <div>{description}</div>
+            </NavLink>
+            <button
+                onClick={editTrigger}
+                className="editButton"
+            >Edit</button>
+        </>
     );
 
 }

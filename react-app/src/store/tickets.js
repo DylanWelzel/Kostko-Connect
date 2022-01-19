@@ -47,6 +47,7 @@ export const postTicketThunk = (userId, departmentId, item_name, location, descr
         body: JSON.stringify({ item_name, location, description }),
     });
     const data = await response.json();
+    if (data.errors) return data
     dispatch(addTicket(data))
     return data;
 };
@@ -60,10 +61,10 @@ export const editTicketThunk = (item_name, location, description, ticketId) => a
         },
         body: JSON.stringify({ item_name, location, description }),
     })
-    if (res.ok) {
-        const ticket = await res.json()
-        dispatch(editTicket(ticket, ticketId))
-    }
+    const data = await res.json();
+    if (data.errors) return data
+    dispatch(editTicket(data, ticketId))
+    return data;
 }
 
 
