@@ -11,6 +11,7 @@ import Tickets from './components/Tickets';
 import Departments from './components/Departments';
 import Splash from './components/Splash';
 import LoginForm from './components/auth/LoginForm';
+import TicketInfo from './components/TicketInfo';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,7 +56,7 @@ function App() {
           <Tickets />
         </ProtectedRoute>
         <ProtectedRoute path='/departments/:departmentId/tickets/:ticketId' exact={true} >
-          <Tickets />
+          <TicketInfo />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

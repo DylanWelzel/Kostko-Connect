@@ -15,12 +15,13 @@ function Tickets() {
     }, [dispatch])
 
     return (
-        <div className="ticketsList">
+        <div className="ticketList">
             {tickets && tickets.map(ticket => {
                 return (
                     <div className="singleTicketContainer" key={ticket.id} >
                         <SingleTicket
-                            id={ticket.id}
+                            departmentId={departmentId}
+                            ticketId={ticket.id}
                             itemName={ticket.item_name}
                             location={ticket.location}
                             description={ticket.description}

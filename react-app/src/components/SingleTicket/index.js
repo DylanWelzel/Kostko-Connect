@@ -4,20 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 
-function SingleTicket({ id, itemName, location, description, departmentId }) {
+function SingleTicket({ departmentId, ticketId, itemName, location, description }) {
     const dispatch = useDispatch()
 
 
     return (
-        <>
-            <div>
-                id {id},
-                itemName {itemName},
-                location {location},
-                description {description},
-                departmentId {departmentId}
-            </div>
-        </>
+
+        <NavLink className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
+            <h1>{itemName}</h1>
+            <div>{location}</div>
+            <div>{description}</div>
+        </NavLink>
+
     );
 
 }
