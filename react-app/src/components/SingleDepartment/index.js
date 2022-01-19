@@ -26,7 +26,6 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId }) {
                 <button
                     onClick={editTrigger}
                     className="editButton"
-
                 >Edit</button>
             </div>
         </>

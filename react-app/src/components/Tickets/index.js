@@ -3,52 +3,32 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { deleteTicketThunk, editTicketThunk, postTicketThunk, readTicketsThunk } from "../../store/tickets";
-import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
-import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import SingleTicket from "../SingleTicket";
 
 function Tickets() {
     const dispatch = useDispatch();
+    const { departmentId } = useParams()
     const tickets = useSelector((state) => state.tickets);
 
-    // const ticketsRead = () => {
-    //     dispatch(readTicketsThunk(1))
-    // }
-    // const ticketsCreate = () => {
-    //     dispatch(postTicketThunk(1, 1, 'sugar', '132 a4', '3 layers'))
-    // }
-    // const ticketsDelete = () => {
-    //     dispatch(deleteTicketThunk(15))
-    // }
-    // const ticketsEdit = () => {
-    //     dispatch(editTicketThunk('edit Sugar', '133 a5', 'this is an edit', 7))
-    // }
-    const departmentsRead = () => {
-        dispatch(getDepartmentsThunk())
-    }
-    const departmentRead = () => {
-        dispatch(getSingleDepartmentThunk(1))
-    }
-    const departmentEdit = () => {
-        dispatch(editDepartmentThunk('Newest edit', 1))
-    }
-    const departmentAdd = () => {
-        dispatch(addDepartmentThunk('Meat'))
-    }
-    const departmentDelete = () => {
-        dispatch(deleteDepartmentThunk(5))
-    }
+    useEffect(() => {
+        dispatch(readTicketsThunk(departmentId))
+    }, [dispatch])
+
     return (
-        <div>
-            {/* <button onClick={ticketsRead}>ticketsRead</button> */}
-            {/*
-            <button onClick={ticketsCreate}>ticketsCreate</button>
-            <button onClick={ticketsDelete}>ticketsDelete</button>
-            <button onClick={ticketsEdit}>ticketsEdit</button> */}
-            <button onClick={departmentsRead}>departmentsRead</button>
-            <button onClick={departmentRead}>departmentSINGLERead</button>
-            <button onClick={departmentEdit}>departmentEdit</button>
-            <button onClick={departmentAdd}>departmentAdd</button>
-            <button onClick={departmentDelete}>departmentDelete</button>
+        <div className="ticketsList">
+            {tickets && tickets.map(ticket => {
+                return (
+                    <div className="singleTicketContainer" key={ticket.id} >
+                        <SingleTicket
+                            id={ticket.id}
+                            itemName={ticket.item_name}
+                            location={ticket.location}
+                            description={ticket.description}
+                            departmentId={ticket.department_id}
+                        />
+                    </div>
+                )
+            })}
 
         </div>
     );

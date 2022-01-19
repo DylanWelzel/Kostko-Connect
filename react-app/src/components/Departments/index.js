@@ -42,10 +42,12 @@ function Departments() {
                     )
                 })}
             </div >
-            <div className="addDepartmentContainer">Don't see your department? Add it here!</div>
-            <button className='primaryBtn' onClick={() => setIsOpen(true)}>
-                Add Department
-            </button>
+            <div className="addItHereContainer">
+                <div className="addDepartmentContainer">Don't see your department? Add it here!</div>
+                <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+                    Add Department
+                </button>
+            </div>
             {isOpen && <Modal setIsOpen={setIsOpen} />}
             {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} />}
         </>

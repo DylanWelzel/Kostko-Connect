@@ -37,3 +37,14 @@
     background:rgb(0, 115, 166);
     /* z-index: 1; */
 }
+
+.addItHereContainer {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    width: 50%;
+    margin: 0 auto;
+
+}
