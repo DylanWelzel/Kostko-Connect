@@ -35,7 +35,7 @@
     border: none;
     color: #fff;
     background:rgb(0, 115, 166);
-    /* z-index: 1; */
+    z-index: 1;
 }
 
 .addItHereContainer {

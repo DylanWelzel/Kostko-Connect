@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import { deleteTicketThunk } from "../../store/tickets";
 
 function SingleTicket({ departmentId, ticketId, itemName, location, description, setIsEditOpen, setEditId }) {
     const dispatch = useDispatch()
@@ -12,6 +13,9 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
         setEditId(ticketId)
     }
 
+    const removeTicket = () => {
+        dispatch(deleteTicketThunk(ticketId))
+    }
 
     return (
         <>
@@ -20,10 +24,13 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
                 <div>{location}</div>
                 <div>{description}</div>
             </NavLink>
-            <button
-                onClick={editTrigger}
-                className="editButton"
-            >Edit</button>
+            <div className="ticketButtons">
+                <button
+                    onClick={editTrigger}
+                    className="editButton"
+                >Edit</button>
+                <button className="removeButton" onClick={removeTicket}>Remove</button>
+            </div>
         </>
     );
 
