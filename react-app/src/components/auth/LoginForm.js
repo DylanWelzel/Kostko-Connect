@@ -13,6 +13,10 @@ const LoginForm = () => {
   const emailErrors = errors?.filter(error => error.includes('email'))
   const passwordErrors = errors?.filter(error => error.includes('Password'))
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login('demo@aa.io', 'password'));
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -81,6 +85,10 @@ const LoginForm = () => {
               ))}
             </div>
             <button type='submit'>Login</button>
+            <div className='switcher'>
+              Just checking out the site?&nbsp;&nbsp;
+            </div>
+            <button onClick={demoLogin} type='submit'>Demo User</button>
             <div className='divider'></div>
             <div className='newToCostco'>New To Costco?</div>
             <NavLink to='/sign-up' className='createAccount'>Create Account</NavLink >

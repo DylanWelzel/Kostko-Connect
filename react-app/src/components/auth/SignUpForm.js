@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { login, signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,6 +16,12 @@ const SignUpForm = () => {
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login('demo@aa.io', 'password'));
+  }
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -120,6 +126,10 @@ const SignUpForm = () => {
             ></input>
           </div>
           <button type='submit'>Sign Up</button>
+          <div className='switcher'>
+            Just checking out the site?&nbsp;&nbsp;
+          </div>
+          <button onClick={demoLogin} type='submit'>Demo User</button>
           <div className='divider'></div>
           <div className='switcher'>
             Already have an account?&nbsp;&nbsp;
