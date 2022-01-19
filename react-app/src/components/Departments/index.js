@@ -1,12 +1,11 @@
 import "./departments.css";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 
 function Departments() {
-    const hist = useHistory();
     const dispatch = useDispatch();
     const tickets = useSelector((state) => state.tickets);
 

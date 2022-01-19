@@ -1,26 +1,34 @@
 import "./splash.css";
-import { useHistory, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from 'react';
-import LoginForm from "../auth/LoginForm";
-import SignUpForm from "../auth/SignUpForm";
+import { NavLink, Redirect } from 'react-router-dom';
+import React from 'react';
 
 function Splash() {
-    const hist = useHistory();
-    const dispatch = useDispatch();
+    const login = () => {
+        console.log('123')
+        return <NavLink to='/login' />;
+    }
 
+    const signup = () => {
+        return <Redirect to='/sign-up' />;
+    }
     return (
         <>
             <div className="bannerContainer">
                 <h1>Costco Connect</h1>
             </div>
             <div className="formContainer">
-                <div className="loginContainer">
+                <NavLink
+                    to='/login'
+                    className="loginContainer"
+                >
                     <h2>Login</h2>
-                </div>
-                <div className="loginContainer">
+                </NavLink>
+                <NavLink
+                    to='/sign-up'
+                    className="loginContainer"
+                >
                     <h2>Sign Up</h2>
-                </div>
+                </NavLink>
             </div>
         </>
     );

@@ -16,6 +16,7 @@
 }
 
 .loginContainer {
+    text-decoration: none;
     border-radius: 10px;
     width: 300px;
     background-color:  #005DAA;
@@ -34,4 +35,186 @@
 .loginContainer:hover {
     box-shadow: 0 4px 4px rgba(0,0,0,.25);
     top: -10px
+}
+
+* {
+    font-family: Arial,Helvetica,"Helvetica Neue",Roboto,georgia,serif;
+}
+
+.bodyContent {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    display: block;
+}
+
+.signInTitle {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+    margin-top: 0;
+    display: block;
+    margin-left: 18%;
+    margin-right: 18%;
+
+}
+
+.signInForm {
+    border: 1px solid #ccc;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: block;
+    color: #333;
+    font-weight: 400;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.signInForm input{
+    color: rgba(0,0,0,.87);
+    display: flex;
+    /* border: none !important; */
+    background-color: transparent;
+    z-index: 1;
+    padding: 20px 16px 7px;
+    align-self: flex-end;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    height: 56px;
+    border-radius: 4px 4px 0 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity,transform,color;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+
+.signInForm button{
+    background-color: #3071a9;
+    border: 0;
+    border-top-color: initial;
+    border-top-style: initial;
+    border-top-width: 0px;
+    border-right-color: initial;
+    border-right-style: initial;
+    border-right-width: 0px;
+    border-bottom-color: initial;
+    border-bottom-style: initial;
+    border-bottom-width: 0px;
+    border-left-color: initial;
+    border-left-style: initial;
+    border-left-width: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    font-size: 1rem;
+    padding: 0.625rem 1rem;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-top: 20px;
+}
+
+.switcher {
+    margin-top: 20px;
+}
+
+.switcher a{
+    text-decoration: none;
+    color: #0060a9;
+    border-bottom: 1px dotted #0060a9;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-bottom-color: rgb(0, 96, 169);
+}
+
+.switcher a:hover{
+    border-bottom-style: solid;
+}
+
+.divider {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-top: 1px solid #ccc;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(204, 204, 204);
+}
+
+.createAccount {
+    background-color: rgb(234, 234, 234);
+    border-bottom-color: rgb(0, 96, 169);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(0, 96, 169);
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: rgb(0, 96, 169);
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: rgb(0, 96, 169);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-sizing :border-box;
+    color: rgb(0, 96, 169);
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    height: 43px;
+    line-height: 24px;
+    margin-top: 20px;
+    padding-bottom :9.504px;
+    padding-top: 9.504px;
+    text-align: center;
+    text-decoration-color: rgb(0, 96, 169);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.createAccount:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+.newToCostco {
+    font-size: 18px;
+    font-weight: 400px;
+    color: rgb(51, 51, 51)
+
 }
