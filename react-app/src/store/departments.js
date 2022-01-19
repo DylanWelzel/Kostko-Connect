@@ -54,7 +54,7 @@ export const addDepartmentThunk = (name) => async (dispatch) => {
         body: JSON.stringify({ name }),
     });
     const data = await response.json();
-    if (data.errors) return data.errors
+    if (data.errors) return data
     dispatch(addDepartment(data));
     return data;
 };
@@ -96,7 +96,12 @@ export default function departmentsReducer(state = [], action) {
         case DELETE_DEPARTMENT:
             return state.filter((department) => department.id !== action.payload.id);
         case EDIT_DEPARTMENT:
-            return [...state, action.payload];
+            return state.map((e) => {
+                if (e.id === action.payload.id) {
+                    return action.payload;
+                }
+                return e;
+            })
         default:
             return state;
     }

@@ -35,7 +35,7 @@ def edit_department(id):
     if form.validate_on_submit():
         department.name = form.name.data
         db.session.commit()
-        return {'department': department.to_dict()}
+        return department.to_dict()
     return {}
 
 # get one department route

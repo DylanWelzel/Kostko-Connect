@@ -1,0 +1,73 @@
+.singleDepartmentContainer {
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    border: 5px solid transparent;
+    background: linear-gradient(45deg, #E31837, #005DAA) border-box;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    transition: top ease .5s;
+    position: relative;
+    top: 0;
+    height: 200px;
+    width: 200px;
+
+}
+.singleDepartmentContainer:hover {
+    box-shadow: 0 8px 8px rgba(0,0,0,.25);
+    top: -10px
+}
+
+.singleDepartmentContainer a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 25%;
+
+}
+
+.departmentList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;}
+
+.addDepartmentButton {
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    background-color: rgb(0, 115, 166);
+    border-right-style: solid;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.8);
+    display: table-cell;
+    font-family: Arial, Helvetica, "Helvetica Neue", Roboto, georgia, serif;
+    font-feature-settings: "kern", "liga", "clig", "calt", "kern", "kern", normal, normal, normal;
+    font-kerning: normal;
+    font-size: 20px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 400;
+    height: 42px;
+    line-height: 28.5714px;
+    overflow-wrap: break-word;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(255, 255, 255);
+
+}

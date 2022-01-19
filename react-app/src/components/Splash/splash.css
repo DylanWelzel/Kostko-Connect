@@ -6,6 +6,13 @@
     color: #E31837;
 }
 
+.navTitle {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    color: #E31837;
+}
+
 .formContainer {
     height: 300px;
     position: relative;
@@ -240,6 +247,9 @@ width: 499.984px;
     display: flex;
     justify-content: space-between;
     list-style: none;
+    align-items: center;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
 }
 
 .navDepartments a{
@@ -308,4 +318,39 @@ width: 499.984px;
     width :100.047px;
     -webkit-font-smoothing: antialiased;
     color: rgb(255, 255, 255);
+}
+
+.primaryBtn {
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    background-color: rgb(0, 115, 166);
+    border-right-style: solid;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.8);
+    display: table-cell;
+    font-family: Arial, Helvetica, "Helvetica Neue", Roboto, georgia, serif;
+    font-feature-settings: "kern", "liga", "clig", "calt", "kern", "kern", normal, normal, normal;
+    font-kerning: normal;
+    font-size: 20px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 400;
+    height: 42px;
+    line-height: 28.5714px;
+    overflow-wrap: break-word;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(255, 255, 255);
+
 }

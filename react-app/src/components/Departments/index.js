@@ -4,52 +4,51 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
 import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import SingleDepartment from "../SingleDepartment";
+import { useState } from "react";
+import Modal from "../AddDepartmentModal";
+import EditDepartModal from "../EditDepartmentModal";
 
 function Departments() {
     const dispatch = useDispatch();
-    const tickets = useSelector((state) => state.tickets);
+    const departments = useSelector((state) => state.departments);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [editId, setEditId] = useState(null);
 
-    // const ticketsRead = () => {
-    //     dispatch(readTicketsThunk(1))
-    // }
-    // const ticketsCreate = () => {
-    //     dispatch(postTicketThunk(1, 1, 'sugar', '132 a4', '3 layers'))
-    // }
-    // const ticketsDelete = () => {
-    //     dispatch(deleteTicketThunk(15))
-    // }
-    // const ticketsEdit = () => {
-    //     dispatch(editTicketThunk('edit Sugar', '133 a5', 'this is an edit', 7))
-    // }
-    const departmentsRead = () => {
+
+    useEffect(() => {
         dispatch(getDepartmentsThunk())
-    }
+    }, [dispatch])
+
     const departmentRead = () => {
         dispatch(getSingleDepartmentThunk(1))
     }
-    const departmentEdit = () => {
-        dispatch(editDepartmentThunk('Newest edit', 1))
-    }
-    const departmentAdd = () => {
-        dispatch(addDepartmentThunk('Meat'))
-    }
-    const departmentDelete = () => {
-        dispatch(deleteDepartmentThunk(5))
-    }
-    return (
-        <div>
-            {/* <button onClick={ticketsRead}>ticketsRead</button> */}
-            {/*
-            <button onClick={ticketsCreate}>ticketsCreate</button>
-            <button onClick={ticketsDelete}>ticketsDelete</button>
-            <button onClick={ticketsEdit}>ticketsEdit</button> */}
-            <button onClick={departmentsRead}>departmentsRead</button>
-            <button onClick={departmentRead}>departmentSINGLERead</button>
-            <button onClick={departmentEdit}>departmentEdit</button>
-            <button onClick={departmentAdd}>departmentAdd</button>
-            <button onClick={departmentDelete}>departmentDelete</button>
 
-        </div>
+    console.log(editId)
+    return (
+        <>
+            <div className="departmentList">
+                {departments && departments.map(department => {
+                    return (
+                        <div className="singleDepartmentContainer" key={department.id} >
+                            <SingleDepartment
+                                id={department.id}
+                                setIsEditOpen={setIsEditOpen}
+                                name={department.name}
+                                id={department.id}
+                                setEditId={setEditId} />
+                        </div>
+                    )
+                })}
+            </div >
+            <div className="addDepartmentContainer">Don't see your department? Add it here!</div>
+            <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+                Add Department
+            </button>
+            {isOpen && <Modal setIsOpen={setIsOpen} />}
+            {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} />}
+        </>
     );
 
 }

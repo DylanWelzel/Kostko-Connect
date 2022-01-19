@@ -11,7 +11,7 @@ def department_exists(form, field):
     department = Department.query.filter(
         Department.name == name).first()
     if department:
-        raise ValidationError('Department already exists!.')
+        raise ValidationError('Department already exists.')
 
 
 class DepartmentForm(FlaskForm):

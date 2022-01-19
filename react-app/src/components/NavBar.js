@@ -12,6 +12,9 @@ const NavBar = () => {
             Departments
           </NavLink>
         </li>
+        <li className="navTitle">
+          <h1>Costco Connect</h1>
+        </li>
         <li className='navLogout'>
           <LogoutButton />
         </li>
