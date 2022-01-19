@@ -1,12 +1,11 @@
-import "./tickets.css";
+import "./departments.css";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef } from "react";
-import { deleteTicketThunk, editTicketThunk, postTicketThunk, readTicketsThunk } from "../../store/tickets";
 import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 
-function Tickets() {
+function Departments() {
     const hist = useHistory();
     const dispatch = useDispatch();
     const tickets = useSelector((state) => state.tickets);
@@ -56,4 +55,4 @@ function Tickets() {
 
 }
 
-export default Tickets;
+export default Departments;

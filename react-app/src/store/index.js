@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import tickets from './tickets'
 import departments from './departments'
+import singleDepartment from './singleDepartment'
 
 const rootReducer = combineReducers({
   session,
   tickets,
-  departments
+  departments,
+  singleDepartment
 });
 
 

@@ -39,7 +39,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/tickets' />;
+    return <Redirect to='/departments' />;
   }
 
   return (

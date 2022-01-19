@@ -1,14 +1,9 @@
-const ONE_DEPARTMENT = "departments/ONE_DEPARTMENT";
 const GET_DEPARTMENTS = "departments/GET_DEPARTMENTS";
 const ADD_DEPARTMENT = "departments/ADD_DEPARTMENT";
 const EDIT_DEPARTMENT = "departments/EDIT_DEPARTMENT";
 const DELETE_DEPARTMENT = "departments/DELETE_DEPARTMENT";
 
-//Organization actions
-export const getOneDepartment = (department) => ({
-    type: ONE_DEPARTMENT,
-    payload: department,
-});
+//department actions
 
 export const getDepartments = (departments) => {
     return {
@@ -50,18 +45,6 @@ export const getDepartmentsThunk = () => async (dispatch) => {
         return null;
     }
 };
-// Get ONE department
-export const getSingleDepartmentThunk = (departmentId) => async (dispatch) => {
-    const res = await fetch(`/api/departments/${departmentId}`);
-
-    if (res.ok) {
-        const body = await res.json();
-        dispatch(getDepartments(body.department));
-        return body;
-    } else {
-        return null;
-    }
-};
 //Add Department
 export const addDepartmentThunk = (name) => async (dispatch) => {
     const response = await fetch(`/api/departments/`, {
@@ -69,9 +52,10 @@ export const addDepartmentThunk = (name) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(name),
+        body: JSON.stringify({ name }),
     });
     const data = await response.json();
+    if (data.errors) return data.errors
     dispatch(addDepartment(data));
     return data;
 };
@@ -84,13 +68,14 @@ export const editDepartmentThunk = (name, id) => async (dispatch) => {
         body: JSON.stringify({ name }),
     });
     const data = await response.json();
+    console.log(data, 'dataaaaa edit dept')
     dispatch(editDepartment(data));
     return data;
 };
 
 //Delete Department
 export const deleteDepartmentThunk = (departmentId) => async (dispatch) => {
-    const res = await fetch(`/api/organizations/${departmentId}/delete`, {
+    const res = await fetch(`/api/departments/${departmentId}/delete`, {
         method: "DELETE",
     });
 
@@ -104,16 +89,16 @@ export const deleteDepartmentThunk = (departmentId) => async (dispatch) => {
 };
 
 
-export default function departmentReducer(state = [], action) {
+export default function departmentsReducer(state = [], action) {
     switch (action.type) {
         case GET_DEPARTMENTS:
             return action.payload;
         case ADD_DEPARTMENT:
             return [...state, action.payload];
         case DELETE_DEPARTMENT:
-            return state.filter((workspace) => workspace.id === action.payload.id);
+            return state.filter((department) => department.id !== action.payload.id);
         case EDIT_DEPARTMENT:
-            return action.payload;
+            return [...state, action.payload];
         default:
             return state;
     }

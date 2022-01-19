@@ -1,0 +1,37 @@
+.bannerContainer {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+    color: #E31837;
+}
+
+.formContainer {
+    height: 300px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30%;
+}
+
+.loginContainer {
+    border-radius: 10px;
+    width: 300px;
+    background-color:  #005DAA;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    transition: top ease .5s;
+    position: relative;
+    top: 0;
+}
+
+.loginContainer h2{
+    margin-top: 80px;
+}
+
+.loginContainer:hover {
+    box-shadow: 0 4px 4px rgba(0,0,0,.25);
+    top: -10px
+}

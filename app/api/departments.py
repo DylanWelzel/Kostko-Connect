@@ -3,7 +3,6 @@ from app.forms.department_form import DepartmentForm
 from app.forms.ticket_form import TicketForm
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-
 from app.models.department import Department
 from app.models.ticket import Ticket
 from .auth_routes import validation_errors_to_error_messages
@@ -36,7 +35,7 @@ def edit_department(id):
     if form.validate_on_submit():
         department.name = form.name.data
         db.session.commit()
-        return department.to_dict()
+        return {'department': department.to_dict()}
     return {}
 
 # get one department route
@@ -46,6 +45,7 @@ def edit_department(id):
 @login_required
 def get_one_department(id):
     dept = Department.query.get(id)
+    print(dept.to_dict())
     return dept.to_dict()
 
 # delete department
@@ -83,7 +83,6 @@ def newDepartment():
 @ department_routes.route('/<int:departmentId>/tickets')
 @ login_required
 def getTicket(departmentId):
-    print('hiiiiiii')
     print(Ticket.query.all())
     allTickets = Ticket.query.order_by(Ticket.id.asc()).filter_by(
         department_id=departmentId).join(Department).all()
@@ -109,6 +108,5 @@ def newChannel(departmentId, userId):
             owner_id=userId)
         db.session.add(ticket)
         db.session.commit()
-        print(ticket.to_dict(), 'ticketttttt')
         return ticket.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
