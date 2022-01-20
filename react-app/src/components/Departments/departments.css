@@ -28,14 +28,21 @@
     color: white;
     text-decoration: none;
     text-align: center;
-    margin-top: 25%;
+    margin-top: 5px;
+}
 
+.singleDepartmentContainer h1{
+    margin-top: 20%;
 }
 
 .departmentList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;}
+
+.departmentList a{
+    height: 160px;
+}
 
 .addDepartmentButton {
     cursor: pointer;

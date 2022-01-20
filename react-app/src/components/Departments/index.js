@@ -17,15 +17,11 @@ function Departments() {
     const [editId, setEditId] = useState(null);
 
 
+
     useEffect(() => {
         dispatch(getDepartmentsThunk())
     }, [dispatch])
 
-    const departmentRead = () => {
-        dispatch(getSingleDepartmentThunk(1))
-    }
-
-    console.log(editId)
     return (
         <>
             <div className="departmentList">
@@ -37,7 +33,9 @@ function Departments() {
                                 setIsEditOpen={setIsEditOpen}
                                 name={department.name}
                                 id={department.id}
-                                setEditId={setEditId} />
+                                setEditId={setEditId}
+                                tickets={department.tickets}
+                            />
                         </div>
                     )
                 })}

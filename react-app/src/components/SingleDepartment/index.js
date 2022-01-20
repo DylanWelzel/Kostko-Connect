@@ -1,12 +1,18 @@
 import "./singledepartment.css";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import { readTicketsThunk } from "../../store/tickets";
 
-function SingleDepartment({ id, name, setIsEditOpen, setEditId }) {
+function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
     const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     dispatch(readTicketsThunk(id))
+    // }, [dispatch])
+
 
     const editTrigger = () => {
         setIsEditOpen(true)
@@ -20,6 +26,7 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId }) {
         <>
             <NavLink className='departmentDetails' to={`/departments/${id}/tickets`}>
                 <h1>{name}</h1>
+                <div className="activeTickets">Active tickets {tickets?.length}</div>
             </NavLink>
             <div className="buttons">
                 <button className="removeButton" onClick={removeDept}>Remove</button>

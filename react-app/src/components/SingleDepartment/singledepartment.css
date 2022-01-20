@@ -5,12 +5,11 @@
     max-width: 300px;
 }
 
+
 .buttons {
-    margin-top: 40px;
     display:flex;
     justify-content: space-between;
     width: 80%;
-    margin-bottom: 10%;
     margin-left: 20px;
 }
 
@@ -51,4 +50,9 @@
 
 .addDepartmentContainer {
     margin-bottom: 10px;
+}
+
+.activeTickets {
+    margin-top: 20px;
+    font-size: 14px;
 }
