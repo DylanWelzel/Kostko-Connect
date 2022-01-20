@@ -39,6 +39,9 @@ function Tickets() {
                     )
                 })}
             </div>
+            {!tickets.length &&
+                <div className="noTickets">Currently there are no tickets for this department. Add one below!</div>
+            }
             <div className="addItHereContainer">
                 <button className='primaryBtn' onClick={() => setIsOpen(true)}>
                     Add a Ticket

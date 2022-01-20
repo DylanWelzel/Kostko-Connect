@@ -36,3 +36,10 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.noTickets {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 20px;
+}
