@@ -6,11 +6,13 @@ import { deleteTicketThunk, editTicketThunk, postTicketThunk, readTicketsThunk }
 import SingleTicket from "../SingleTicket";
 import AddTicketModal from "../AddTicketModal";
 import EditTicketModal from "../EditTicketModal";
+import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 
 function Tickets() {
     const dispatch = useDispatch();
     const { departmentId } = useParams()
     const tickets = useSelector((state) => state.tickets);
+    const dept = useSelector((state) => state.singleDepartment);
     const [isOpen, setIsOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editId, setEditId] = useState(null);
@@ -19,8 +21,13 @@ function Tickets() {
         dispatch(readTicketsThunk(departmentId))
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(getSingleDepartmentThunk(departmentId))
+    }, [])
+
     return (
         <>
+            <h1 className="deptName">{dept.name}</h1>
             <div className="ticketList">
                 {tickets && tickets.map(ticket => {
                     return (

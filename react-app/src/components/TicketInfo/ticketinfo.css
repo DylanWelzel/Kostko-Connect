@@ -1,0 +1,28 @@
+.pageContainer {
+    /* border: 1px solid green; */
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 900px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticketInfoContainer {
+    /* border: 1px solid blue; */
+    margin: 45px;
+    width: 400px
+}
+
+.messagingContainer {
+    /* border: 1px solid blue; */
+    margin: 45px;
+    width: 400px
+}
+
+.itemName {
+    font-size: 65px;
+}
+
+.description {
+    margin-bottom: 20px;
+}

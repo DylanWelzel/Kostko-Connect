@@ -24,4 +24,5 @@ class Ticket(db.Model):
             'location': self.location,
             'description': self.description,
             'department_id': self.department_id,
+            'owner_id': self.owner_id
         }
