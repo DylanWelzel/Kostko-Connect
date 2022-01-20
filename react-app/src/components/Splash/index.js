@@ -21,7 +21,7 @@ function Splash() {
     return (
         <>
             <div className="bannerContainer">
-                <h1>Costco Connect</h1>
+                <h1>Kostco Connect</h1>
             </div>
             <div className="formContainer">
                 <NavLink
