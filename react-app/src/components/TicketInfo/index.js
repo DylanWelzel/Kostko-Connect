@@ -16,7 +16,11 @@ function TicketInfo() {
     }, [])
 
     return (
-        <h1>{ticket.item_name}</h1>
+        <div>
+            <h1>{ticket.item_name}</h1>
+            <div>{ticket.location}</div>
+            <div>{ticket.description}</div>
+        </div>
     );
 
 }

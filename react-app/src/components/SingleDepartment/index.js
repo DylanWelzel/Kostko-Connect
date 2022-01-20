@@ -26,7 +26,7 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
         <>
             <NavLink className='departmentDetails' to={`/departments/${id}/tickets`}>
                 <h1>{name}</h1>
-                <div className="activeTickets">Active tickets {tickets?.length}</div>
+                <div className="activeTickets">Active tickets {tickets?.length || 0}</div>
             </NavLink>
             <div className="buttons">
                 <button className="removeButton" onClick={removeDept}>Remove</button>

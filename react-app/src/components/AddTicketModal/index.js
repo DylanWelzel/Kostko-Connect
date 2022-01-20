@@ -23,6 +23,7 @@ const AddTicketModal = ({ setIsOpen }) => {
         }
         return setIsOpen(false)
     }
+
     return (
         <>
             <div className='darkBG' onClick={() => setIsOpen(false)} />

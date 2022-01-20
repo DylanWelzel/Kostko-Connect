@@ -47,12 +47,20 @@ def get_departments():
 @ login_required
 def edit_department(id):
     department = Department.query.get(id)
+    dept_tickets = Ticket.query.filter_by(
+        department_id=id).join(Department).all()
+    tickets = []
+    if dept_tickets:
+        for i in range(len(dept_tickets)):
+            tickets.append(dept_tickets[i].to_dict())
     form = DepartmentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         department.name = form.name.data
         db.session.commit()
-        return department.to_dict()
+        dict_dept = department.to_dict()
+        dict_dept['tickets'] = tickets
+        return dict_dept
     return {}
 
 # get one department route
