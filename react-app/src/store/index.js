@@ -4,12 +4,13 @@ import session from './session'
 import tickets from './tickets'
 import departments from './departments'
 import singleDepartment from './singleDepartment'
-
+import singleTicket from './singleTicket';
 const rootReducer = combineReducers({
   session,
   tickets,
   departments,
-  singleDepartment
+  singleDepartment,
+  singleTicket
 });
 
 

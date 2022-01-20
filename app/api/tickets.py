@@ -37,3 +37,11 @@ def edit_Ticket(ticketId):
         db.session.commit()
         return ticket.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@ ticket_routes.route('/<int:id>', methods=['GET'])
+@ login_required
+def get_one_ticket(id):
+    ticket = Ticket.query.get(id)
+    dict_ticket = ticket.to_dict()
+    return dict_ticket
