@@ -29,7 +29,11 @@ function TicketInfo() {
                 <div className="userName">Created by {user.username}</div>
             </div>
             <div className="messagingContainer">
-                MESSAGING
+                <div className="chatTitle">Chat</div>
+                <div className="chatLog">
+                    <div className="message">message</div>
+                    <input className="chatInput" type="text" />
+                </div>
             </div>
         </div>
     );

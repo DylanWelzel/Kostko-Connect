@@ -16,7 +16,10 @@
 .messagingContainer {
     /* border: 1px solid blue; */
     margin: 45px;
-    width: 400px
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .itemName {
@@ -25,4 +28,30 @@
 
 .description {
     margin-bottom: 20px;
+}
+
+.chatTitle {
+    font-size: 65px;
+    margin: 45px;
+}
+
+.chatLog {
+    width: 90%;
+    height: 75%;
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chatInput {
+    width: 90%;
+    margin: 3%;
+    align-self: center;
+}
+
+.message{
+    margin-left: 5%;
+    margin-right: 5%;
 }
