@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { getSingleTicketThunk } from "../../store/singleTicket";
 import { getSingleUserThunk } from "../../store/singleUser";
 import { createOneMessage, getAllMessages } from "../../store/messages";
+
+
 import e from "cors";
 
 function TicketInfo() {
@@ -67,6 +69,7 @@ function TicketInfo() {
                             )
                         })}
                     </ul>
+                    <div className="messageDivider"></div>
                     <form onSubmit={postMessage}>
                         <input
                             className="chatInput"

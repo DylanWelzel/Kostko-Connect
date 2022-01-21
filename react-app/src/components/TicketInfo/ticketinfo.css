@@ -150,3 +150,11 @@
     margin-left: 5%;
     padding: 20px;
 }
+
+.messageDivider {
+    /* margin-bottom: 1rem; */
+    border-top: 1px solid #ccc;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(204, 204, 204);
+}
