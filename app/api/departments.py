@@ -127,7 +127,7 @@ def getTicket(departmentId):
 # ADD A TICKET TO A Department
 @ department_routes.route('/<int:departmentId>/user/<int:userId>/tickets', methods=['POST'])
 @ login_required
-def newChannel(departmentId, userId):
+def newTicket(departmentId, userId):
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

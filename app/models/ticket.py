@@ -14,8 +14,9 @@ class Ticket(db.Model):
 
     owner = db.relationship(
         "User", back_populates="department")
-
     departments = db.relationship("Department", back_populates="tickets")
+    ticket_messages = db.relationship(
+        'Message', back_populates='dept_tickets', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {

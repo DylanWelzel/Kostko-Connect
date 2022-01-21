@@ -37,7 +37,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: 750px;
-    overflow: scroll;
+    overflow-y: scroll;
+    margin-bottom: 30px;
 }
 
 .noTickets {

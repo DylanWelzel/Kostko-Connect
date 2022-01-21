@@ -6,6 +6,8 @@ import departments from './departments'
 import singleDepartment from './singleDepartment'
 import singleTicket from './singleTicket';
 import singleUser from './singleUser'
+import socket from './socket'
+import messages from './messages'
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
   departments,
   singleDepartment,
   singleTicket,
-  singleUser
+  singleUser,
+  socket,
+  messages
 });
 
 

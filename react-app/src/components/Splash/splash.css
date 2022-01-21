@@ -253,6 +253,7 @@ width: 499.984px;
 }
 
 .navDepartments a{
+    text-align: center;
     text-decoration: none;
     background-color: rgb(0, 115, 166);
     border-right-style :solid;

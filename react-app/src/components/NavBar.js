@@ -9,7 +9,7 @@ const NavBar = () => {
       <ul className='navContainer'>
         <li className='navDepartments'>
           <NavLink to='/departments' exact={true} activeClassName='active'>
-            Departments
+            Home
           </NavLink>
         </li>
         <li className="navTitle">

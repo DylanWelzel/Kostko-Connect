@@ -1,16 +1,21 @@
 import "./ticketinfo.css";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getSingleTicketThunk } from "../../store/singleTicket";
 import { getSingleUserThunk } from "../../store/singleUser";
+import { createOneMessage, getAllMessages } from "../../store/messages";
+import e from "cors";
 
 function TicketInfo() {
     const dispatch = useDispatch()
     const { ticketId } = useParams()
+    const [messageContent, setMessageContent] = useState('')
 
     const ticket = useSelector((state) => state.singleTicket);
+    const messages = useSelector((state) => state.messages);
     const user = useSelector(state => state.singleUser)
+    const loggedInUsername = useSelector(state => state.session.user.username)
 
     useEffect(() => {
         dispatch(getSingleTicketThunk(ticketId))
@@ -19,6 +24,17 @@ function TicketInfo() {
     useEffect(() => {
         dispatch(getSingleUserThunk(ticket.owner_id))
     }, [ticket])
+
+    useEffect(() => {
+        dispatch(getAllMessages(ticketId))
+    }, [dispatch])
+
+    function postMessage(e) {
+        e.preventDefault()
+        dispatch(createOneMessage(ticketId, messageContent))
+        return setMessageContent('')
+    }
+
 
     return (
         <div className="pageContainer">
@@ -31,11 +47,37 @@ function TicketInfo() {
             <div className="messagingContainer">
                 <div className="chatTitle">Chat</div>
                 <div className="chatLog">
-                    <div className="message">message</div>
-                    <input className="chatInput" type="text" />
+                    <ul className="messagesContainer">
+                        {messages && messages?.map(message => {
+                            return (
+                                <div key={message.id} className="message">
+                                    {loggedInUsername === message.owner.username &&
+                                        <>
+                                            <li className="messageContent">{message.content}</li>
+                                            <li className="messageUser">{message?.owner?.username} </li>
+                                        </>
+                                    }
+                                    {loggedInUsername !== message.owner.username &&
+                                        <>
+                                            <li className="otherMessageContent">{message.content}</li>
+                                            <li className="otherMessageUser">{message?.owner?.username} </li>
+                                        </>
+                                    }
+                                </div>
+                            )
+                        })}
+                    </ul>
+                    <form onSubmit={postMessage}>
+                        <input
+                            className="chatInput"
+                            type="text"
+                            value={messageContent}
+                            onChange={(e) => setMessageContent(e.target.value)}
+                        />
+                    </form>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 
 }

@@ -10,7 +10,7 @@
 .ticketInfoContainer {
     /* border: 1px solid blue; */
     margin: 45px;
-    width: 400px
+    width: 400px;
 }
 
 .messagingContainer {
@@ -45,6 +45,7 @@
     justify-content: flex-end;
 }
 
+
 .chatInput {
     width: 90%;
     margin: 3%;
@@ -54,4 +55,98 @@
 .message{
     margin-left: 5%;
     margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatLog ul{
+    overflow-y: auto;
+    list-style: none;
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+.messageContent {
+    float: right;
+    background-color: #1289fe;
+    color: #fff;
+    margin-top: 5px;
+    width: 75%;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 25%);
+    font-size: 14px;
+    line-height: 1.42857143;
+        font-size: 1rem;
+}
+
+.messageUser {
+    margin-left: 28px;
+    margin-top: -1px;
+    color: #525252;
+    display: block;
+    margin-block-start: .5em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.otherMessageContent {
+    align-self: flex-end;
+    float: right;
+    background-color: rgb(211, 32, 41);
+    color: #fff;
+    margin-top: 5px;
+    width: 75%;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 25%);
+    font-size: 14px;
+    line-height: 1.42857143;
+        font-size: 1rem;
+}
+
+.otherMessageUser {
+    align-self: flex-end;
+    margin-left: 28px;
+    margin-top: -1px;
+    color: #525252;
+    display: block;
+    margin-block-start: .5em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.chatInput {
+    color: rgba(0,0,0,.87);
+    display: flex;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 4px 4px 0 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity,transform,color;
+    font-size: 1rem;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    align-self: center;
+    justify-self: center;
+    margin-left: 5%;
+    padding: 20px;
 }

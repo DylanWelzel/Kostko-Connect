@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
 
     department = db.relationship(
         "Ticket", back_populates="owner", cascade='all, delete')
+    messages = db.relationship(
+        "Message", back_populates="owners", cascade='all, delete')
 
     @property
     def password(self):
