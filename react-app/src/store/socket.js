@@ -1,4 +1,4 @@
-import io from 'socket.io'
+import { io } from 'socket.io-client'
 const GET_SOCKET = "get/SOCKET"
 
 export const getSocket = () => {

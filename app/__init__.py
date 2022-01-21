@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from flask_socketio import SocketIO, send, join_room, leave_room, emit
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -40,6 +41,7 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
+socketIo = SocketIO(app=app, cors_allowed_origins='*')
 
 
 # Since we are deploying with Docker and Flask,
@@ -74,3 +76,66 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+@socketIo.on("message")
+def handleMessage(msg):
+    if(msg):
+        room = f"channel {msg['channelId']}"
+        msg['allMessages']['owner'] = msg['session']
+        socketIo.emit("message", {
+                      'allMessages': msg['allMessages'], 'channelId': msg['channelId'], 'session': msg['session']}, to=room)
+
+
+@socketIo.on("updateChannel")
+def handleUpdateC(data):
+    if(data):
+        room = f"org {data['organization']}"
+        socketIo.emit("updateChannel", {
+                      'channelId': data['channelId'], 'channelName': data['channelName']}, to=room)
+
+
+@socketIo.on("deleteChannel")
+def handleDelete(data):
+    room = f"org {data['organization']}"
+    socketIo.emit("deleteChannel", {
+                  'channelId': data['channelId'], 'id': data['organization']}, to=room)
+
+
+@socketIo.on("addChannel")
+def handleAdd(data):
+    room = f"org {data['organization']}"
+    socketIo.emit('addChannel', {
+                  'channel': data['channel'], 'id': data['organization']}, to=room)
+
+
+@socketIo.on("joinserver")
+def handleChannels(data):
+    if(data):
+        room = f"org {data['organization']}"
+        join_room(room)
+
+
+@socketIo.on("leaveserver")
+def leaveServer(data):
+    if(data):
+        room = f"org {data['organization']}"
+        leave_room(room)
+
+
+@socketIo.on('joinroom')
+def on_join(data):
+    if(data):
+        room = f"channel {data['channelId']}"
+        join_room(room)
+
+
+@socketIo.on('leaveroom')
+def on_leave(data):
+    if(data):
+        room = f"channel {data['channelId']}"
+        leave_room(room)
+
+
+if __name__ == '__main__':
+    socketIo.run(app)
