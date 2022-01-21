@@ -25,3 +25,8 @@
 .ticketDetails div{
    width: 100px;
 }
+
+.noButtons {
+    width: 111px;
+    z-index: -100;
+}

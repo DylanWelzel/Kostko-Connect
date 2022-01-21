@@ -29,6 +29,14 @@ function Tickets() {
         <>
             <h1 className="deptName">{dept.name}</h1>
             <div className="ticketList">
+                <div className="ticketTitles">
+                    <div className="ticketTitles">
+                        <div className="nameTitle">Item Name</div>
+                        <div className="locationTitle">Location</div>
+                        <div className="descriptionTitle">Description</div>
+                    </div>
+                    <div className="editTitle"></div>
+                </div>
                 {tickets && tickets.map(ticket => {
                     return (
                         <div className="singleTicketContainer" key={ticket.id} >
@@ -41,6 +49,7 @@ function Tickets() {
                                 departmentId={ticket.department_id}
                                 setIsEditOpen={setIsEditOpen}
                                 setEditId={setEditId}
+                                ownerId={ticket.owner_id}
                             />
                         </div>
                     )
