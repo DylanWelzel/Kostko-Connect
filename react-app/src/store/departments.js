@@ -67,6 +67,7 @@ export const editDepartmentThunk = (name, id) => async (dispatch) => {
         body: JSON.stringify({ name }),
     });
     const data = await response.json();
+    if (data.errors) return data
     dispatch(editDepartment(data));
     return data;
 };

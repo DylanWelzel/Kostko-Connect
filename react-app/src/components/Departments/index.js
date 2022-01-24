@@ -13,6 +13,7 @@ function Departments() {
     const [isOpen, setIsOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editId, setEditId] = useState(null);
+    const [deptName, setDeptName] = useState('')
 
 
 
@@ -32,6 +33,7 @@ function Departments() {
                                 id={department.id}
                                 setEditId={setEditId}
                                 tickets={department.tickets}
+                                setDeptName={setDeptName}
                             />
                         </div>
                     )
@@ -43,8 +45,8 @@ function Departments() {
                     Add Department
                 </button>
             </div>
-            {isOpen && <Modal setIsOpen={setIsOpen} />}
-            {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} />}
+            {isOpen && <Modal setIsOpen={setIsOpen} deptName={deptName} />}
+            {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} deptName={deptName} />}
         </>
     );
 

@@ -1,10 +1,9 @@
 
+from app.forms.edit_ticket_form import EditTicketForm
 from app.forms.message_form import MessageForm
-from app.forms.ticket_form import TicketForm
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models.message import Message
-
 from app.models.ticket import Ticket
 from app.models.user import User
 from .auth_routes import validation_errors_to_error_messages
@@ -31,12 +30,14 @@ def deleteTicket(ticketId):
 @ login_required
 def edit_Ticket(ticketId):
     ticket = Ticket.query.get(ticketId)
-    form = TicketForm()
+    form = EditTicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        ticket.item_name = form.item_name.data,
+        if ticket.item_name == form.item_name.data.capitalize() and ticket.location == form.location.data and ticket.description == form.description.data.capitalize():
+            return {'errors': ['Nothing has been updated']}
+        ticket.item_name = form.item_name.data.capitalize(),
         ticket.location = form.location.data,
-        ticket.description = form.description.data,
+        ticket.description = form.description.data.capitalize(),
         db.session.commit()
         return ticket.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

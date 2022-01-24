@@ -56,12 +56,12 @@ def edit_department(id):
     form = DepartmentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        department.name = form.name.data
+        department.name = form.name.data.capitalize()
         db.session.commit()
         dict_dept = department.to_dict()
         dict_dept['tickets'] = tickets
         return dict_dept
-    return {}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # get one department route
 
@@ -103,7 +103,7 @@ def newDepartment():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         dept = Department(
-            name=form.name.data,
+            name=form.name.data.capitalize(),
         )
         db.session.add(dept)
         db.session.commit()
@@ -132,9 +132,9 @@ def newTicket(departmentId, userId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         ticket = Ticket(
-            item_name=form.item_name.data,
+            item_name=form.item_name.data.capitalize(),
             location=form.location.data,
-            description=form.description.data,
+            description=form.description.data.capitalize(),
             department_id=departmentId,
             owner_id=userId)
         db.session.add(ticket)

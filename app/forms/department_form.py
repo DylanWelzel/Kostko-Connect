@@ -9,7 +9,7 @@ def department_exists(form, field):
     # Checking if username is already in use
     name = field.data
     department = Department.query.filter(
-        Department.name == name).first()
+        Department.name == name.capitalize()).first()
     if department:
         raise ValidationError('Department already exists.')
 

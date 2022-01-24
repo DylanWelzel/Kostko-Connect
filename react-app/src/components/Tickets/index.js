@@ -16,6 +16,10 @@ function Tickets() {
     const [isOpen, setIsOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editId, setEditId] = useState(null);
+    const [prevTicketName, setPrevTicketName] = useState(false);
+    const [prevTicketLocation, setPrevTicketLocation] = useState(false);
+    const [prevTicketDescription, setPrevTicketDescription] = useState(false);
+
 
     useEffect(() => {
         dispatch(readTicketsThunk(departmentId))
@@ -50,6 +54,9 @@ function Tickets() {
                                 setIsEditOpen={setIsEditOpen}
                                 setEditId={setEditId}
                                 ownerId={ticket.owner_id}
+                                setPrevTicketName={setPrevTicketName}
+                                setPrevTicketLocation={setPrevTicketLocation}
+                                setPrevTicketDescription={setPrevTicketDescription}
                             />
                         </div>
                     )
@@ -64,7 +71,7 @@ function Tickets() {
                 </button>
             </div>
             {isOpen && <AddTicketModal setIsOpen={setIsOpen} />}
-            {isEditOpen && <EditTicketModal editId={editId} setIsOpen={setIsEditOpen} />}
+            {isEditOpen && <EditTicketModal editId={editId} setIsOpen={setIsEditOpen} prevTicketName={prevTicketName} prevTicketLocation={prevTicketLocation} prevTicketDescription={prevTicketDescription} />}
         </>
     );
 }

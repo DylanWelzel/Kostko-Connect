@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { addDepartmentThunk } from "../../store/departments";
 import "./adddepartmentmodal.css";
 
-const Modal = ({ setIsOpen }) => {
-    const [departmentName, setDepartmentName] = useState('')
+const Modal = ({ setIsOpen, deptName }) => {
+    const [departmentName, setDepartmentName] = useState(deptName)
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch()
@@ -32,6 +32,7 @@ const Modal = ({ setIsOpen }) => {
                     <input
                         required
                         className='modalInput'
+                        placeholder="Bakery"
                         type="text"
                         value={departmentName}
                         onChange={(e) => setDepartmentName(e.target.value)}

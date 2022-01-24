@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import React from "react";
 import { deleteDepartmentThunk, } from "../../store/departments";
 
-function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
+function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets, setDeptName }) {
     const dispatch = useDispatch()
     // const socket = useSelector((state) => state.socket)
 
@@ -15,6 +15,7 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
     const editTrigger = () => {
         setIsEditOpen(true)
         setEditId(id)
+        setDeptName(name)
     }
 
     const removeDept = () => {

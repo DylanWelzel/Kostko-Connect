@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 import { editTicketThunk } from "../../store/tickets";
 import "./editticketmodal.css";
 
-const EditTicketModal = ({ setIsOpen, editId }) => {
-    const [itemName, setItemName] = useState('')
-    const [location, setLocation] = useState('')
-    const [description, setDescription] = useState('')
+const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDescription, prevTicketName }) => {
+    const [itemName, setItemName] = useState(prevTicketName)
+    const [location, setLocation] = useState(prevTicketLocation)
+    const [description, setDescription] = useState(prevTicketDescription)
     const [errors, setErrors] = useState([]);
     const { departmentId } = useParams()
     const dispatch = useDispatch()
@@ -71,7 +71,7 @@ const EditTicketModal = ({ setIsOpen, editId }) => {
                                 type="submit"
                                 className='deleteBtn'
                             >
-                                Add
+                                Update
                             </button>
                             <button
                                 className='cancelBtn'

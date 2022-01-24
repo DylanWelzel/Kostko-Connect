@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { deleteTicketThunk } from "../../store/tickets";
 import { getSocket } from "../../store/socket";
 
-function SingleTicket({ departmentId, ticketId, itemName, location, description, setIsEditOpen, setEditId, ownerId }) {
+function SingleTicket({ departmentId, ticketId, itemName, location, description, setIsEditOpen, setEditId, ownerId, setPrevTicketName, setPrevTicketLocation, setPrevTicketDescription }) {
     const dispatch = useDispatch()
 
     const userId = useSelector((state) => state.session.user.id);
@@ -14,6 +14,9 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
 
     const editTrigger = () => {
         setIsEditOpen(true)
+        setPrevTicketName(itemName)
+        setPrevTicketLocation(location)
+        setPrevTicketDescription(description)
         setEditId(ticketId)
     }
 

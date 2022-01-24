@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editDepartmentThunk } from "../../store/departments";
 
-const EditDepartModal = ({ setIsOpen, editId }) => {
-    const [departmentName, setDepartmentName] = useState('')
+const EditDepartModal = ({ setIsOpen, editId, deptName }) => {
+    const [departmentName, setDepartmentName] = useState(deptName)
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const EditDepartModal = ({ setIsOpen, editId }) => {
             <div className='centered'>
                 <form onSubmit={editDept} className='modal'>
                     <div className='modalHeader'>
-                        <h5 className='heading'>Add a department</h5>
+                        <h5 className='heading'>Edit a department</h5>
                     </div>
                     <div className='modalContent'>
                         Department Name
@@ -33,6 +33,7 @@ const EditDepartModal = ({ setIsOpen, editId }) => {
                         className='modalInput'
                         type="text"
                         value={departmentName}
+                        placeholder="Bakery"
                         onChange={(e) => setDepartmentName(e.target.value)}
                     />
                     {errors && errors.map((error, ind) => (
@@ -44,7 +45,7 @@ const EditDepartModal = ({ setIsOpen, editId }) => {
                                 type="submit"
                                 className='deleteBtn'
                             >
-                                Add
+                                Update
                             </button>
                             <button
                                 className='cancelBtn'

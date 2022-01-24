@@ -39,6 +39,7 @@ const AddTicketModal = ({ setIsOpen }) => {
                         required
                         className='modalInput'
                         type="text"
+                        placeholder="Sugar"
                         value={itemName}
                         onChange={(e) => setItemName(e.target.value)}
                     />
@@ -49,6 +50,7 @@ const AddTicketModal = ({ setIsOpen }) => {
                         required
                         className='modalInput'
                         type="text"
+                        placeholder="124 B4"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                     />
@@ -59,6 +61,7 @@ const AddTicketModal = ({ setIsOpen }) => {
                         required
                         className='modalInput'
                         type="text"
+                        placeholder="2 Layers"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
