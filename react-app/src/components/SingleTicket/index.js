@@ -44,17 +44,26 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
             <NavLink onClick={joinRoom} className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
                 <h1>{itemName}</h1>
                 <div>{location}</div>
-                <div>{description}</div>
+                <div className="descriptionDiv">{description}</div>
+                {userId === ownerId &&
+                    <div className="ticketButtons">
+                        <button
+                            onClick={
+                                async (e) => {
+                                    e.preventDefault();
+                                    editTrigger()
+                                }
+                            }
+                            className="editTicketButton"
+                        >Edit</button>
+                        <button className="removeTicketButton" onClick={
+                            async (e) => {
+                                e.preventDefault();
+                                removeTicket()
+                            }}>Remove</button>
+                    </div>
+                    || <div className="noButtons"></div>}
             </NavLink>
-            {userId === ownerId &&
-                <div className="ticketButtons">
-                    <button
-                        onClick={editTrigger}
-                        className="editButton"
-                    >Edit</button>
-                    <button className="removeButton" onClick={removeTicket}>Remove</button>
-                </div>
-                || <div className="noButtons"></div>}
         </>
     );
 

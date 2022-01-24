@@ -4,14 +4,12 @@
     align-items: center;
     color: black;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .ticketButtons {
-    padding: 3px;
-    margin-right: 5px;
     display:flex;
     flex-direction: column;
-    width: fit-content;
+    max-width: 70px !important;
 }
 
 .ticketDetails h1{
@@ -20,13 +18,41 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-left: 5%;
   }
 
 .ticketDetails div{
    width: 100px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .noButtons {
-    width: 111px;
+    max-width: 70px !important;
     z-index: -100;
+}
+
+.removeTicketButton{
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: none;
+    color: #fff;
+    background: #E31837;
+    padding:5px
+    /* z-index: 1; */
+}
+
+.editTicketButton {
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: none;
+    color: #fff;
+    background:rgb(0, 115, 166);
+    padding:5px
+    /* z-index: 1; */
 }

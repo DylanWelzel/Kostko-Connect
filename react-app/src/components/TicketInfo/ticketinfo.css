@@ -16,7 +16,7 @@
 .messagingContainer {
     /* border: 1px solid blue; */
     margin: 45px;
-    width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +33,7 @@
 .chatTitle {
     font-size: 65px;
     margin: 45px;
+    margin-bottom: 5px;
 }
 
 .chatLog {
