@@ -2,7 +2,7 @@ import "./ticketinfo.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { getSingleTicketThunk } from "../../store/singleTicket";
+import { getSingleTicketThunk, isTicketDoneThunk } from "../../store/singleTicket";
 import { getSingleUserThunk } from "../../store/singleUser";
 import { addMessage, createOneMessage, getAllMessages } from "../../store/messages";
 import { getSocket } from "../../store/socket";
@@ -78,6 +78,9 @@ function TicketInfo() {
         }
     }
 
+    function isDone() {
+        dispatch(isTicketDoneThunk(ticketId))
+    }
 
     return (
         <div className="pageContainer">

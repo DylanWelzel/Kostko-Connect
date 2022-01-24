@@ -4,7 +4,6 @@ import { NavLink, useParams } from 'react-router-dom';
 import socket from '../store/socket';
 import LogoutButton from './auth/LogoutButton';
 
-
 const NavBar = () => {
 
   const { ticketId, departmentId } = useParams()

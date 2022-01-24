@@ -52,7 +52,19 @@ def get_one_ticket(id):
     return dict_ticket
 
 
+# is ticket done
+
+
+@ ticket_routes.route('/<int:id>/isdone', methods=['GET'])
+@ login_required
+def is_ticket_done(id):
+    ticket = Ticket.query.get(id)
+    dict_ticket = ticket.to_dict()
+    dict_ticket['isDone'] = True
+    return dict_ticket
+
 # get messages of a ticket
+
 
 @ticket_routes.route('/<int:ticketId>/messages', methods=['GET'])
 @ login_required

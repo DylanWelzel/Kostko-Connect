@@ -1,8 +1,13 @@
 const ONE_TICKET = "tickets/ONE_TICKET";
+const IS_DONE = 'tickets/IS_DONE'
 
-//Organization actions
 export const getOneTicket = (ticket) => ({
     type: ONE_TICKET,
+    payload: ticket,
+});
+
+export const isTicketDone = (ticket) => ({
+    type: IS_DONE,
     payload: ticket,
 });
 
@@ -19,9 +24,24 @@ export const getSingleTicketThunk = (ticketId) => async (dispatch) => {
     }
 };
 
+// is ticket done
+export const isTicketDoneThunk = (ticketId) => async (dispatch) => {
+    const res = await fetch(`/api/tickets/${ticketId}/isdone`)
+
+    if (res.ok) {
+        const body = await res.json();
+        dispatch(isTicketDone(body));
+        return body
+    } else {
+        return null;
+    }
+};
+
 export default function ticketReducer(state = [], action) {
     switch (action.type) {
         case ONE_TICKET:
+            return action.payload;
+        case IS_DONE:
             return action.payload;
         default:
             return state;
