@@ -1,17 +1,16 @@
 import "./ticketinfo.css";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getSingleTicketThunk } from "../../store/singleTicket";
 import { getSingleUserThunk } from "../../store/singleUser";
 import { addMessage, createOneMessage, getAllMessages } from "../../store/messages";
 import { getSocket } from "../../store/socket";
 
-import e from "cors";
 
 function TicketInfo() {
     const dispatch = useDispatch()
-    const { ticketId } = useParams()
+    const { ticketId, departmentId } = useParams()
     const [messageContent, setMessageContent] = useState('')
 
     const ticket = useSelector((state) => state.singleTicket);
@@ -22,20 +21,39 @@ function TicketInfo() {
 
     const socket = useSelector((state) => state.socket);
 
+
+
     useEffect(() => {
         if (!socket) {
             dispatch(getSocket())
         }
         if (socket) {
+            socket.emit("joinroom", { ticketId })
             socket.on('message', (msg) => {
-                const { messages } = msg
-                dispatch(addMessage(messages))
+                const { allMessages } = msg
+                dispatch(addMessage(allMessages))
             })
             return () => {
                 socket.disconnect()
             }
         }
     }, [socket])
+
+
+    // useEffect(() => {
+    //     if (!socket) {
+    //         dispatch(getSocket());
+    //     }
+    //     if (socket) {
+    //         socket.emit("joinroom", { ticketId })
+    //         console.log(`joining room ${ticketId}`)
+    //         socket.emit("joinserver", { department: departmentId })
+    //         return () => {
+    //             socket.disconnect();
+    //         };
+    //     }
+    // }, [socket]);
+
 
     useEffect(() => {
         dispatch(getSingleTicketThunk(ticketId))
@@ -54,7 +72,6 @@ function TicketInfo() {
         if (messageContent !== "") {
             const msg = await dispatch(createOneMessage(ticketId, messageContent));
             socket.emit("message", { ticketId, session, allMessages: msg });
-            // dummyDiv?.current?.scrollIntoView(false);
             setMessageContent("");
         } else {
             alert("Please add message");

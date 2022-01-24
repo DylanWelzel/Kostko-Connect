@@ -1,8 +1,8 @@
 import "./tickets.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
-import { deleteTicketThunk, editTicketThunk, postTicketThunk, readTicketsThunk } from "../../store/tickets";
+import React, { useEffect, useState } from "react";
+import { readTicketsThunk } from "../../store/tickets";
 import SingleTicket from "../SingleTicket";
 import AddTicketModal from "../AddTicketModal";
 import EditTicketModal from "../EditTicketModal";

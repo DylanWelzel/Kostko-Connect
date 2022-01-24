@@ -1,18 +1,16 @@
 import "./singledepartment.css";
-import { NavLink, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
-import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
-import { getSingleDepartmentThunk } from "../../store/singleDepartment";
-import { readTicketsThunk } from "../../store/tickets";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import React from "react";
+import { deleteDepartmentThunk, } from "../../store/departments";
 
 function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
     const dispatch = useDispatch()
+    // const socket = useSelector((state) => state.socket)
 
     // useEffect(() => {
-    //     dispatch(readTicketsThunk(id))
-    // }, [dispatch])
-
+    //     dispatch(getSocket());
+    // })
 
     const editTrigger = () => {
         setIsEditOpen(true)
@@ -22,6 +20,11 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets }) {
     const removeDept = () => {
         dispatch(deleteDepartmentThunk(id))
     }
+
+    // function joinServer() {
+    //     socket.emit("joinserver", { department: id })
+    // }
+
     return (
         <>
             <NavLink className='departmentDetails' to={`/departments/${id}/tickets`}>

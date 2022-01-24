@@ -1,9 +1,7 @@
 import "./departments.css";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef } from "react";
-import { addDepartmentThunk, deleteDepartmentThunk, editDepartmentThunk, getDepartmentsThunk } from "../../store/departments";
-import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import React, { useEffect } from "react";
+import { getDepartmentsThunk } from "../../store/departments";
 import SingleDepartment from "../SingleDepartment";
 import { useState } from "react";
 import Modal from "../AddDepartmentModal";
@@ -29,7 +27,6 @@ function Departments() {
                     return (
                         <div className="singleDepartmentContainer" key={department.id} >
                             <SingleDepartment
-                                id={department.id}
                                 setIsEditOpen={setIsEditOpen}
                                 name={department.name}
                                 id={department.id}

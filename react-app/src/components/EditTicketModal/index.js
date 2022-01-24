@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { editTicketThunk, postTicketThunk } from "../../store/tickets";
+import { editTicketThunk } from "../../store/tickets";
 import "./editticketmodal.css";
 
 const EditTicketModal = ({ setIsOpen, editId }) => {

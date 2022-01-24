@@ -1,13 +1,17 @@
 import "./singleticket.css";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
-import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import React, { useEffect } from "react";
 import { deleteTicketThunk } from "../../store/tickets";
+import { getSocket } from "../../store/socket";
 
 function SingleTicket({ departmentId, ticketId, itemName, location, description, setIsEditOpen, setEditId, ownerId }) {
     const dispatch = useDispatch()
+
     const userId = useSelector((state) => state.session.user.id);
+
+    const socket = useSelector((state) => state.socket);
+
     const editTrigger = () => {
         setIsEditOpen(true)
         setEditId(ticketId)
@@ -17,11 +21,27 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
         dispatch(deleteTicketThunk(ticketId))
     }
 
+    useEffect(() => {
+        dispatch(getSocket());
+    }, [])
 
+    function joinRoom() {
+        if (!socket) {
+            dispatch(getSocket());
+        }
+        if (socket) {
+            socket.emit("joinroom", { ticketId })
+            console.log(`joining room ${ticketId}`)
+            socket.emit("joinserver", { department: departmentId })
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }
 
     return (
         <>
-            <NavLink className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
+            <NavLink onClick={joinRoom} className='ticketDetails' to={`/departments/${departmentId}/tickets/${ticketId}`}>
                 <h1>{itemName}</h1>
                 <div>{location}</div>
                 <div>{description}</div>

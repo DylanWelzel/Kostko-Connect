@@ -81,60 +81,71 @@ def react_root(path):
 @socketIo.on("message")
 def handleMessage(msg):
     if(msg):
-        room = f"channel {msg['channelId']}"
+        room = f"ticket {msg['ticketId']}"
         msg['allMessages']['owner'] = msg['session']
+        print(msg, 'hiiiiii')
         socketIo.emit("message", {
-                      'allMessages': msg['allMessages'], 'channelId': msg['channelId'], 'session': msg['session']}, to=room)
+                      'allMessages': msg['allMessages'], 'ticketId': msg['ticketId'], 'session': msg['session']}, to=room)
 
 
-@socketIo.on("updateChannel")
-def handleUpdateC(data):
-    if(data):
-        room = f"org {data['organization']}"
-        socketIo.emit("updateChannel", {
-                      'channelId': data['channelId'], 'channelName': data['channelName']}, to=room)
+# @socketIo.on("updateChannel")
+# def handleUpdateC(data):
+#     if(data):
+#         room = f"org {data['organization']}"
+#         socketIo.emit("updateChannel", {
+#                       'channelId': data['channelId'], 'channelName': data['channelName']}, to=room)
 
 
-@socketIo.on("deleteChannel")
-def handleDelete(data):
-    room = f"org {data['organization']}"
-    socketIo.emit("deleteChannel", {
-                  'channelId': data['channelId'], 'id': data['organization']}, to=room)
+# @socketIo.on("deleteChannel")
+# def handleDelete(data):
+#     room = f"org {data['organization']}"
+#     socketIo.emit("deleteChannel", {
+#                   'channelId': data['channelId'], 'id': data['organization']}, to=room)
 
 
-@socketIo.on("addChannel")
-def handleAdd(data):
-    room = f"org {data['organization']}"
-    socketIo.emit('addChannel', {
-                  'channel': data['channel'], 'id': data['organization']}, to=room)
+# @socketIo.on("addChannel")
+# def handleAdd(data):
+#     room = f"org {data['organization']}"
+#     socketIo.emit('addChannel', {
+#                   'channel': data['channel'], 'id': data['organization']}, to=room)
 
 
 @socketIo.on("joinserver")
 def handleChannels(data):
     if(data):
-        room = f"org {data['organization']}"
+        room = f"dept {data['department']}"
         join_room(room)
 
 
 @socketIo.on("leaveserver")
 def leaveServer(data):
     if(data):
-        room = f"org {data['organization']}"
+        room = f"dept {data['department']}"
         leave_room(room)
 
 
 @socketIo.on('joinroom')
 def on_join(data):
     if(data):
-        room = f"channel {data['channelId']}"
+        room = f"ticket {data['ticketId']}"
         join_room(room)
 
 
 @socketIo.on('leaveroom')
 def on_leave(data):
     if(data):
-        room = f"channel {data['channelId']}"
+        room = f"ticket {data['ticketId']}"
         leave_room(room)
+
+
+@socketIo.on('connection')
+def on_connect():
+    print('a user has connected')
+
+
+@socketIo.on('disconnect')
+def on_disconnect():
+    print('a user has disconnected')
 
 
 if __name__ == '__main__':

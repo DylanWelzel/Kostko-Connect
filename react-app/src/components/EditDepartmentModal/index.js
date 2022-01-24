@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addDepartmentThunk, editDepartmentThunk } from "../../store/departments";
+import { editDepartmentThunk } from "../../store/departments";
 
 const EditDepartModal = ({ setIsOpen, editId }) => {
     const [departmentName, setDepartmentName] = useState('')

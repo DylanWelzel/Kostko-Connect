@@ -10,14 +10,7 @@ function Splash() {
     if (user) {
         return <Redirect to='/departments' />;
     }
-
-    const login = () => {
-        return <NavLink to='/login' />;
-    }
-
-    const signup = () => {
-        return <Redirect to='/sign-up' />;
-    }
+    
     return (
         <>
             <div className="bannerContainer">
