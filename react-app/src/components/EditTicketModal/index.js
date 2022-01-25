@@ -16,9 +16,7 @@ const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDesc
 
     const editTicket = async (e) => {
         e.preventDefault()
-        console.log(departmentId, itemName, location, description, editId)
         const data = await dispatch(editTicketThunk(itemName, location, description, editId))
-        console.log(data, 'dataaaaaa')
         if (data.errors) {
             return setErrors(data.errors)
         }

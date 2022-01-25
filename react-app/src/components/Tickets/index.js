@@ -19,6 +19,15 @@ function Tickets() {
     const [prevTicketName, setPrevTicketName] = useState(false);
     const [prevTicketLocation, setPrevTicketLocation] = useState(false);
     const [prevTicketDescription, setPrevTicketDescription] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const adminRole = useSelector((state) => state.session.user.role);
+
+    useEffect(() => {
+        if (adminRole === 'admin' || adminRole === 'stocker') {
+            setIsAdmin(true)
+        }
+    }, [])
 
 
     useEffect(() => {
@@ -65,11 +74,13 @@ function Tickets() {
             {!tickets.length &&
                 <div className="noTickets">Currently there are no tickets for this department. Add one below!</div>
             }
-            <div className="addItHereContainer">
-                <button className='primaryBtn' onClick={() => setIsOpen(true)}>
-                    Add a Ticket
-                </button>
-            </div>
+            {isAdmin &&
+                <div className="addItHereContainer">
+                    <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+                        Add a Ticket
+                    </button>
+                </div>
+            }
             {isOpen && <AddTicketModal setIsOpen={setIsOpen} />}
             {isEditOpen && <EditTicketModal editId={editId} setIsOpen={setIsEditOpen} prevTicketName={prevTicketName} prevTicketLocation={prevTicketLocation} prevTicketDescription={prevTicketDescription} />}
         </>

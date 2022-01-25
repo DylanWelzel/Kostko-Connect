@@ -14,6 +14,15 @@ function Departments() {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editId, setEditId] = useState(null);
     const [deptName, setDeptName] = useState('')
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const adminRole = useSelector((state) => state.session.user.role);
+
+    useEffect(() => {
+        if (adminRole === 'admin') {
+            setIsAdmin(true)
+        }
+    }, [])
 
 
 
@@ -39,12 +48,14 @@ function Departments() {
                     )
                 })}
             </div >
-            <div className="addItHereContainer">
-                <div className="addDepartmentContainer">Don't see your department? Add it here!</div>
-                <button className='primaryBtn' onClick={() => setIsOpen(true)}>
-                    Add Department
-                </button>
-            </div>
+            {isAdmin &&
+                <div className="addItHereContainer">
+                    <div className="addDepartmentContainer">Don't see your department? Add it here!</div>
+                    <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+                        Add Department
+                    </button>
+                </div>
+            }
             {isOpen && <Modal setIsOpen={setIsOpen} deptName={deptName} />}
             {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} deptName={deptName} />}
         </>

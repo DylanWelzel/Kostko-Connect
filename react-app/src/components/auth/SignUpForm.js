@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { login, signUp } from '../../store/session';
@@ -9,12 +10,18 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [role, setRole] = React.useState('admin');
+
   const usernameErrors = errors?.filter(error => error.includes('Username'))
   const emailErrors = errors?.filter(error => error.includes('email'))
   const passwordErrors = errors?.filter(error => error.includes('Password'))
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setRole(e.target.value)
+  }
 
 
   const demoLogin = async (e) => {
@@ -25,7 +32,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, role));
       if (data) {
         return setErrors(data)
       }
@@ -123,6 +130,30 @@ const SignUpForm = () => {
               onChange={updateRepeatPassword}
               value={repeatPassword}
             ></input>
+          </div>
+          <p className='radioTitle'>Role</p>
+          <div className='radios'>
+            <div>
+              <input type="radio"
+                value="admin"
+                checked={role === 'admin'}
+                onChange={handleChange}
+              /> Admin
+            </div>
+            <div>
+              <input type="radio"
+                value="stocker"
+                checked={role === 'stocker'}
+                onChange={handleChange}
+              /> Stocker
+            </div>
+            <div>
+              <input type="radio"
+                value="driver"
+                checked={role === 'driver'}
+                onChange={handleChange}
+              /> Driver
+            </div>
           </div>
           <button type='submit'>Sign Up</button>
           <div className='switcher'>

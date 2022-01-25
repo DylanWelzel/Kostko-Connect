@@ -63,7 +63,6 @@ def is_email(form, field):
     email = field.data
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     if not re.fullmatch(regex, email):
-        print('ITS IN')
         raise ValidationError('Must be a valid email.')
 
 
@@ -74,3 +73,4 @@ class SignUpForm(FlaskForm):
                            username_exists, username_length, DataRequired()])
     password = StringField('password', validators=[
                            password_length, password_capital, password_number, DataRequired()])
+    role = StringField('role', validators=[DataRequired()])

@@ -1,16 +1,22 @@
 import "./singledepartment.css";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { deleteDepartmentThunk, } from "../../store/departments";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets, setDeptName }) {
     const dispatch = useDispatch()
-    // const socket = useSelector((state) => state.socket)
+    const [isAdmin, setIsAdmin] = useState(false)
 
-    // useEffect(() => {
-    //     dispatch(getSocket());
-    // })
+    const adminRole = useSelector((state) => state.session.user.role);
+
+    useEffect(() => {
+        if (adminRole === 'admin') {
+            setIsAdmin(true)
+        }
+    }, [])
 
     const editTrigger = () => {
         setIsEditOpen(true)
@@ -22,9 +28,6 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets, setDept
         dispatch(deleteDepartmentThunk(id))
     }
 
-    // function joinServer() {
-    //     socket.emit("joinserver", { department: id })
-    // }
 
     return (
         <>
@@ -32,13 +35,15 @@ function SingleDepartment({ id, name, setIsEditOpen, setEditId, tickets, setDept
                 <h1>{name}</h1>
                 <div className="activeTickets">Active tickets {tickets?.length || 0}</div>
             </NavLink>
-            <div className="buttons">
-                <button className="removeButton" onClick={removeDept}>Remove</button>
-                <button
-                    onClick={editTrigger}
-                    className="editButton"
-                >Edit</button>
-            </div>
+            {isAdmin &&
+                <div className="buttons">
+                    <button className="removeButton" onClick={removeDept}>Remove</button>
+                    <button
+                        onClick={editTrigger}
+                        className="editButton"
+                    >Edit</button>
+                </div>
+            }
         </>
     );
 

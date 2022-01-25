@@ -83,7 +83,6 @@ def handleMessage(msg):
     if(msg):
         room = f"ticket {msg['ticketId']}"
         msg['allMessages']['owner'] = msg['session']
-        print(msg, 'hiiiiii')
         socketIo.emit("message", {
                       'allMessages': msg['allMessages'], 'ticketId': msg['ticketId'], 'session': msg['session']}, to=room)
 
@@ -138,7 +137,7 @@ def on_leave(data):
         leave_room(room)
 
 
-@socketIo.on('connection')
+@socketIo.on('connect')
 def on_connect():
     print('a user has connected')
 
