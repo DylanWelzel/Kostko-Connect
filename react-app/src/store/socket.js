@@ -6,9 +6,8 @@ export const getSocket = () => {
         type: GET_SOCKET
     }
 }
-// must use http here
-//"https://kostcoconnect.herokuapp.com/" for heroku
-//"http://http://localhost:5000/"
+//"https://kostcoconnect.herokuapp.com/"
+//"http://localhost:5000/"
 const endPoint = "http://localhost:5000/";
 
 const socket = (state = null, action) => {

@@ -30,9 +30,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ProtectedRoute>
+      {/* <ProtectedRoute>
         <NavBar />
-      </ProtectedRoute>
+      </ProtectedRoute> */}
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -50,12 +50,15 @@ function App() {
           <Splash />
         </Route>
         <ProtectedRoute path='/departments' exact={true} >
+          <NavBar />
           <Departments />
         </ProtectedRoute>
         <ProtectedRoute path='/departments/:departmentId/tickets' exact={true} >
+          <NavBar />
           <Tickets />
         </ProtectedRoute>
         <ProtectedRoute path='/departments/:departmentId/tickets/:ticketId' exact={true} >
+          <NavBar />
           <TicketInfo />
         </ProtectedRoute>
       </Switch>

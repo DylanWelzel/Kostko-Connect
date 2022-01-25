@@ -7,6 +7,7 @@ import SingleTicket from "../SingleTicket";
 import AddTicketModal from "../AddTicketModal";
 import EditTicketModal from "../EditTicketModal";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import { getSocket } from "../../store/socket";
 
 function Tickets() {
     const dispatch = useDispatch();
@@ -20,8 +21,9 @@ function Tickets() {
     const [prevTicketLocation, setPrevTicketLocation] = useState(false);
     const [prevTicketDescription, setPrevTicketDescription] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false)
-
+    const [roomId, setRoomId] = useState(null)
     const adminRole = useSelector((state) => state.session.user.role);
+    const socket = useSelector((state) => state.socket);
 
     useEffect(() => {
         if (adminRole === 'admin' || adminRole === 'stocker') {
@@ -29,6 +31,9 @@ function Tickets() {
         }
     }, [])
 
+    useEffect(() => {
+        dispatch(getSocket());
+    }, [])
 
     useEffect(() => {
         dispatch(readTicketsThunk(departmentId))
@@ -37,6 +42,7 @@ function Tickets() {
     useEffect(() => {
         dispatch(getSingleDepartmentThunk(departmentId))
     }, [])
+
 
     return (
         <>
@@ -66,6 +72,7 @@ function Tickets() {
                                 setPrevTicketName={setPrevTicketName}
                                 setPrevTicketLocation={setPrevTicketLocation}
                                 setPrevTicketDescription={setPrevTicketDescription}
+                                setRoomId={setRoomId}
                             />
                         </div>
                     )

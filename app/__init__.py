@@ -87,42 +87,6 @@ def handleMessage(msg):
                       'allMessages': msg['allMessages'], 'ticketId': msg['ticketId'], 'session': msg['session']}, to=room)
 
 
-# @socketIo.on("updateChannel")
-# def handleUpdateC(data):
-#     if(data):
-#         room = f"org {data['organization']}"
-#         socketIo.emit("updateChannel", {
-#                       'channelId': data['channelId'], 'channelName': data['channelName']}, to=room)
-
-
-# @socketIo.on("deleteChannel")
-# def handleDelete(data):
-#     room = f"org {data['organization']}"
-#     socketIo.emit("deleteChannel", {
-#                   'channelId': data['channelId'], 'id': data['organization']}, to=room)
-
-
-# @socketIo.on("addChannel")
-# def handleAdd(data):
-#     room = f"org {data['organization']}"
-#     socketIo.emit('addChannel', {
-#                   'channel': data['channel'], 'id': data['organization']}, to=room)
-
-
-@socketIo.on("joinserver")
-def handleChannels(data):
-    if(data):
-        room = f"dept {data['department']}"
-        join_room(room)
-
-
-@socketIo.on("leaveserver")
-def leaveServer(data):
-    if(data):
-        room = f"dept {data['department']}"
-        leave_room(room)
-
-
 @socketIo.on('joinroom')
 def on_join(data):
     if(data):
@@ -137,14 +101,20 @@ def on_leave(data):
         leave_room(room)
 
 
+clients = 0
+
+
 @socketIo.on('connect')
 def on_connect():
-    print('a user has connected')
+    global clients
+    clients += 1
+    print('Scocket connected', clients)
 
-
-@socketIo.on('disconnect')
-def on_disconnect():
-    print('a user has disconnected')
+    @socketIo.on('disconnect')
+    def disc():
+        global clients
+        clients -= 1
+        print('Socket disconnected', clients)
 
 
 if __name__ == '__main__':
