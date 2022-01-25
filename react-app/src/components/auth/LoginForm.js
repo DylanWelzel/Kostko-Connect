@@ -40,9 +40,6 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className="bannerContainer">
-        <h1>Kostco Connect</h1>
-      </div>
       <div className="bodyContent">
         <div className="signInTitle">
           <h2>Sign In</h2>

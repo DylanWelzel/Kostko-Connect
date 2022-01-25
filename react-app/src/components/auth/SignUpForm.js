@@ -64,9 +64,6 @@ const SignUpForm = () => {
 
   return (
     <>
-      <div className="bannerContainer">
-        <h1>Kostco Connect</h1>
-      </div>
       <div className="bodyContent">
         <div className="signInTitle">
           <h2>Create Account</h2>

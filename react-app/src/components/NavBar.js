@@ -41,6 +41,9 @@ const NavBar = () => {
           <h1>Kostco Connect</h1>
         </li>
         <li className='navLogout'>
+          <NavLink onClick={clicked} to='/about' exact={true} activeClassName='active'>
+            About Me!
+          </NavLink>
           <LogoutButton />
         </li>
       </ul>

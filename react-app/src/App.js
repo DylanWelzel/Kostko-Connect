@@ -12,6 +12,7 @@ import Departments from './components/Departments';
 import Splash from './components/Splash';
 import LoginForm from './components/auth/LoginForm';
 import TicketInfo from './components/TicketInfo';
+import About from './components/About';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
+        </Route>
+        <Route path='/about' exact={true} >
+          <About />
         </Route>
         <ProtectedRoute path='/departments' exact={true} >
           <NavBar />
