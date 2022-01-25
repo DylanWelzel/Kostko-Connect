@@ -5,6 +5,10 @@
     max-width: 300px;
 }
 
+.departmentDetails h1 {
+    max-height: 37px;
+    /* overflow: hidden; */
+}
 
 .buttons {
     display:flex;
