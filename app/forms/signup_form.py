@@ -6,12 +6,12 @@ from app.models import User
 import re
 
 
-def user_exists(form, field):
+def email_exists(form, field):
     # Checking if user exists
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:
-        raise ValidationError('Email address is already in use.')
+        raise ValidationError('This email address is already in use.')
 
 
 def username_exists(form, field):
@@ -68,7 +68,7 @@ def is_email(form, field):
 
 class SignUpForm(FlaskForm):
     email = EmailField('email', validators=[is_email,
-                                            user_exists, DataRequired()])
+                                            email_exists, DataRequired()])
     username = StringField('username', validators=[
                            username_exists, username_length, DataRequired()])
     password = StringField('password', validators=[
