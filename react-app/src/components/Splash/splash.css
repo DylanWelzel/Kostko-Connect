@@ -252,6 +252,7 @@ width: 499.984px;
     align-items: center;
     padding-inline-start: 10px;
     padding-inline-end: 10px;
+    max-height: 75px;
 }
 
 .navDepartments a{
@@ -415,4 +416,12 @@ width: 499.984px;
     padding: 10px;
     overflow-wrap: break-word;
     width: 100.047px;
+}
+
+.navLogo {
+    width: 250px; /* width of container */
+    height: 300px; /* height of container */
+    margin-top: 20px;
+    object-fit: cover;
+    margin-left: 140px;
 }

@@ -37,9 +37,10 @@ const NavBar = () => {
             </NavLink>
           }
         </li>
-        <li className="navTitle">
+        {/* <li className="navTitle">
           <h1>Kostco Connect</h1>
-        </li>
+        </li> */}
+        <img className="navLogo" src="./navLogo.png" alt="logo" />
         <li className='navLogout'>
           <NavLink onClick={clicked} to='/about' exact={true} activeClassName='active'>
             About Me!
