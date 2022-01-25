@@ -28,7 +28,6 @@ def get_departments():
         for ticket in tickets:
             dept_tickets.append(ticket.to_dict())
         dept['tickets'] = dept_tickets
-    print(dept, 'ticketssssss')
     return {'departments': departments}
 # edit department route
 

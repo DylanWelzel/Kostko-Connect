@@ -29,10 +29,6 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
         await setRoomId(ticketId)
     }
 
-    // function joinRoom() {
-    //     socket.emit("joinroom", { ticketId })
-    //     console.log(`joining room ${ticketId}`)
-    // }
 
     return (
         <>
