@@ -21,6 +21,10 @@ function TicketInfo() {
 
     const socket = useSelector((state) => state.socket);
 
+    function leave() {
+        socket.emit("leaveroom", { ticketId })
+        console.log(`left room ${ticketId}`)
+    }
 
 
     useEffect(() => {
@@ -28,7 +32,6 @@ function TicketInfo() {
             dispatch(getSocket())
         }
         if (socket) {
-            socket.emit("joinroom", { ticketId })
             socket.on('message', (msg) => {
                 const { allMessages } = msg
                 dispatch(addMessage(allMessages))
@@ -38,21 +41,6 @@ function TicketInfo() {
             }
         }
     }, [socket])
-
-
-    // useEffect(() => {
-    //     if (!socket) {
-    //         dispatch(getSocket());
-    //     }
-    //     if (socket) {
-    //         socket.emit("joinroom", { ticketId })
-    //         console.log(`joining room ${ticketId}`)
-    //         socket.emit("joinserver", { department: departmentId })
-    //         return () => {
-    //             socket.disconnect();
-    //         };
-    //     }
-    // }, [socket]);
 
 
     useEffect(() => {
@@ -84,6 +72,7 @@ function TicketInfo() {
 
     return (
         <div className="pageContainer">
+            <button onClick={leave}>back to department</button>
             <div className="ticketInfoContainer">
                 <h1 className="itemName">{ticket.item_name}</h1>
                 <h2 className="location">{ticket.location}</h2>

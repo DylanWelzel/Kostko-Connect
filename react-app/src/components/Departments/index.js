@@ -31,7 +31,8 @@ function Departments() {
     }, [dispatch])
 
     return (
-        <>
+        <div>
+            <div className="selectText">Select your department and start adding some tickets!</div>
             <div className="departmentList">
                 {departments && departments.map(department => {
                     return (
@@ -58,7 +59,7 @@ function Departments() {
             }
             {isOpen && <Modal setIsOpen={setIsOpen} deptName={deptName} />}
             {isEditOpen && <EditDepartModal editId={editId} setIsOpen={setIsEditOpen} deptName={deptName} />}
-        </>
+        </div>
     );
 
 }

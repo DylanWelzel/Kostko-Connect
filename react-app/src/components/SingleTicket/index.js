@@ -29,17 +29,8 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
     }, [])
 
     function joinRoom() {
-        if (!socket) {
-            dispatch(getSocket());
-        }
-        if (socket) {
-            socket.emit("joinroom", { ticketId })
-            console.log(`joining room ${ticketId}`)
-            socket.emit("joinserver", { department: departmentId })
-            return () => {
-                socket.disconnect();
-            };
-        }
+        socket.emit("joinroom", { ticketId })
+        console.log(`joining room ${ticketId}`)
     }
 
     return (

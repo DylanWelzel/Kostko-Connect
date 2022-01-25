@@ -13,7 +13,7 @@ function Splash() {
 
     return (
         <div>
-            <img className="splashLogo" src="./logo3.png" alt="logo" srcset="" />
+            <img className="splashLogo" src="./logo3.png" alt="logo" />
             <div className="splashContainer">
                 {/* <div className="bannerContainer">
                 <h1>Kostco Connect</h1>
