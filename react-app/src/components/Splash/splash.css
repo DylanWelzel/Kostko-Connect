@@ -403,7 +403,13 @@ width: 499.984px;
 
 .navLogout {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.navDepartments {
+    flex: 1;
 }
 
 .navLogout a{
@@ -419,9 +425,8 @@ width: 499.984px;
 }
 
 .navLogo {
-    width: 250px; /* width of container */
-    height: 300px; /* height of container */
+    width: 250px;
+    height: 300px;
     margin-top: 20px;
     object-fit: cover;
-    margin-left: 140px;
 }

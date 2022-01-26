@@ -2,7 +2,7 @@ import "./ticketinfo.css";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { getSingleTicketThunk, isTicketDoneThunk } from "../../store/singleTicket";
+import { getSingleTicketThunk, isTicketDoneThunk, ticketNotDoneThunk } from "../../store/singleTicket";
 import { getSingleUserThunk } from "../../store/singleUser";
 import { addMessage, createOneMessage, getAllMessages } from "../../store/messages";
 import { getSocket } from "../../store/socket";
@@ -84,9 +84,7 @@ function TicketInfo() {
         }
     }
 
-    function isDone() {
-        dispatch(isTicketDoneThunk(ticketId))
-    }
+
     if (leave) {
         return <Redirect to={`/departments/${department.id}/tickets`} />
     }
@@ -100,6 +98,7 @@ function TicketInfo() {
                     <h2 className="location">{ticket.location}</h2>
                     <div className="description">{ticket.description}</div>
                     <div className="userName">Created by {user.username}</div>
+                    <input className="isDone" type="checkbox" /> done
                 </div>
                 <div className="messagingContainer">
                     <div className="chatTitle">Chat</div>

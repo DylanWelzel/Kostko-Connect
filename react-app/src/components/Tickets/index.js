@@ -22,11 +22,10 @@ function Tickets() {
     const [prevTicketDescription, setPrevTicketDescription] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false)
     const [roomId, setRoomId] = useState(null)
-    const adminRole = useSelector((state) => state.session.user.role);
-    const socket = useSelector((state) => state.socket);
+    const role = useSelector((state) => state.session.user.role);
 
     useEffect(() => {
-        if (adminRole === 'admin' || adminRole === 'stocker') {
+        if (role === 'admin' || role === 'stocker') {
             setIsAdmin(true)
         }
     }, [])
@@ -47,34 +46,34 @@ function Tickets() {
     return (
         <>
             <h1 className="deptName">{dept.name}</h1>
-            <div className="ticketList">
+            <div className="ticketTitles">
                 <div className="ticketTitles">
-                    <div className="ticketTitles">
-                        <div className="nameTitle">Item Name</div>
-                        <div className="locationTitle">Location</div>
-                        <div className="descriptionTitle">Description</div>
-                    </div>
-                    <div className="editTitle"></div>
+                    <div className="nameTitle">Item Name</div>
+                    <div className="locationTitle">Location</div>
+                    <div className="descriptionTitle">Description</div>
                 </div>
+                <div className="editTitle"></div>
+            </div>
+            <div className="ticketList">
                 {tickets && tickets.map(ticket => {
                     return (
-                        <div className="singleTicketContainer" key={ticket.id} >
-                            <SingleTicket
-                                departmentId={departmentId}
-                                ticketId={ticket.id}
-                                itemName={ticket.item_name}
-                                location={ticket.location}
-                                description={ticket.description}
-                                departmentId={ticket.department_id}
-                                setIsEditOpen={setIsEditOpen}
-                                setEditId={setEditId}
-                                ownerId={ticket.owner_id}
-                                setPrevTicketName={setPrevTicketName}
-                                setPrevTicketLocation={setPrevTicketLocation}
-                                setPrevTicketDescription={setPrevTicketDescription}
-                                setRoomId={setRoomId}
-                            />
-                        </div>
+                        <SingleTicket
+                            key={ticket.id}
+                            departmentId={departmentId}
+                            ticketId={ticket.id}
+                            itemName={ticket.item_name}
+                            location={ticket.location}
+                            description={ticket.description}
+                            departmentId={ticket.department_id}
+                            isDone={ticket.is_done}
+                            setIsEditOpen={setIsEditOpen}
+                            setEditId={setEditId}
+                            ownerId={ticket.owner_id}
+                            setPrevTicketName={setPrevTicketName}
+                            setPrevTicketLocation={setPrevTicketLocation}
+                            setPrevTicketDescription={setPrevTicketDescription}
+                            setRoomId={setRoomId}
+                        />
                     )
                 })}
             </div>

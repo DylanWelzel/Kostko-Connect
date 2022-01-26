@@ -11,6 +11,7 @@ class Ticket(db.Model):
     department_id = db.Column(db.Integer, db.ForeignKey(
         'departments.id', ondelete='SET NULL'), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    is_done = db.Column(db.Boolean, default=False, nullable=False)
 
     owner = db.relationship(
         "User", back_populates="department")
@@ -25,5 +26,6 @@ class Ticket(db.Model):
             'location': self.location,
             'description': self.description,
             'department_id': self.department_id,
-            'owner_id': self.owner_id
+            'owner_id': self.owner_id,
+            'is_done': self.is_done
         }

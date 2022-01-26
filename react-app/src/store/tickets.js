@@ -2,6 +2,7 @@ const GET_TICKETS = "tickets/GET_TICKETS";
 const ADD_TICKET = "tickets/ADD_TICKET";
 const EDIT_TICKET = "tickets/EDIT_TICKET";
 const DELETE_TICKET = "tickets/DELETE_TICKET";
+const FINISH_TICKET = "tickets/FINISH_TICKET"
 
 export const getTickets = (tickets, departmentId) => ({
     type: GET_TICKETS,
@@ -23,6 +24,11 @@ export const editTicket = (ticketInfo, ticketId) => ({
 export const deleteTicket = (ticketId) => ({
     type: DELETE_TICKET,
     payload: ticketId
+});
+
+export const isTicketDone = (ticket) => ({
+    type: FINISH_TICKET,
+    payload: ticket,
 });
 
 // Get tickets
@@ -83,6 +89,20 @@ export const deleteTicketThunk = (ticketId) => async (dispatch) => {
     }
 };
 
+// is ticket done
+export const isTicketDoneThunk = (ticketId) => async (dispatch) => {
+    const res = await fetch(`/api/tickets/${ticketId}/isdone`)
+
+    if (res.ok) {
+        const body = await res.json();
+        dispatch(isTicketDone(body));
+        return body
+    } else {
+        return null;
+    }
+};
+
+
 export default function ticketReducer(state = [], action) {
 
     switch (action.type) {
@@ -93,6 +113,13 @@ export default function ticketReducer(state = [], action) {
         case ADD_TICKET:
             return [...state, action.payload];
         case EDIT_TICKET:
+            return state.map((e) => {
+                if (e.id === action.payload.id) {
+                    return action.payload;
+                }
+                return e;
+            })
+        case FINISH_TICKET:
             return state.map((e) => {
                 if (e.id === action.payload.id) {
                     return action.payload;

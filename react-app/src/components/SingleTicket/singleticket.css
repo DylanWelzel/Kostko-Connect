@@ -6,6 +6,7 @@
     width: 100%;
     justify-content: space-between;
 }
+
 .ticketButtons {
     display:flex;
     flex-direction: column;
@@ -55,4 +56,37 @@
     background:rgb(0, 115, 166);
     padding:5px
     /* z-index: 1; */
+}
+
+.doneSingleTicketContainer {
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    border: 5px solid transparent;
+    background: green;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    transition: top ease .5s;
+    position: relative;
+    top: 0;
+    height: fit-content;
+    width: 80%;
+    height: 55.09px;
+}
+
+.doneSingleTicketContainer a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.doneSingleTicketContainer:hover {
+    box-shadow: 0 8px 8px rgba(0,0,0,.25);
+    top: -10px
 }

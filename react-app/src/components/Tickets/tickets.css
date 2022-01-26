@@ -36,7 +36,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-height: 750px;
+    max-height: 60vh;
     overflow-y: scroll;
     margin-bottom: 30px;
 }
@@ -63,6 +63,7 @@
     margin: 0 auto;
     text-align: center;
     width: 94%;
+    margin-bottom: 5px;
 }
 
 .nameTitle {
@@ -79,4 +80,5 @@
 
 .editTitle {
     width: 111px;
+    margin-right: 65px;
 }

@@ -60,9 +60,19 @@ def get_one_ticket(id):
 @ login_required
 def is_ticket_done(id):
     ticket = Ticket.query.get(id)
+    ticket.is_done = True
+    db.session.commit()
     dict_ticket = ticket.to_dict()
-    dict_ticket['isDone'] = True
     return dict_ticket
+
+
+# @ ticket_routes.route('/<int:id>/isnotdone', methods=['GET'])
+# @ login_required
+# def ticket_not_done(id):
+#     ticket = Ticket.query.get(id)
+#     dict_ticket = ticket.to_dict()
+#     dict_ticket['isDone'] = False
+#     return dict_ticket
 
 # get messages of a ticket
 

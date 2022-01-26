@@ -6,10 +6,10 @@ export const getOneTicket = (ticket) => ({
     payload: ticket,
 });
 
-export const isTicketDone = (ticket) => ({
-    type: IS_DONE,
-    payload: ticket,
-});
+// export const isTicketDone = (ticket) => ({
+//     type: FINISH_TICKET,
+//     payload: ticket,
+// });
 
 // Get ONE ticket
 export const getSingleTicketThunk = (ticketId) => async (dispatch) => {
@@ -24,18 +24,31 @@ export const getSingleTicketThunk = (ticketId) => async (dispatch) => {
     }
 };
 
-// is ticket done
-export const isTicketDoneThunk = (ticketId) => async (dispatch) => {
-    const res = await fetch(`/api/tickets/${ticketId}/isdone`)
+// // is ticket done
+// export const isTicketDoneThunk = (ticketId) => async (dispatch) => {
+//     const res = await fetch(`/api/tickets/${ticketId}/isdone`)
 
-    if (res.ok) {
-        const body = await res.json();
-        dispatch(isTicketDone(body));
-        return body
-    } else {
-        return null;
-    }
-};
+//     if (res.ok) {
+//         const body = await res.json();
+//         dispatch(isTicketDone(body));
+//         return body
+//     } else {
+//         return null;
+//     }
+// };
+
+// // ticket not done
+// export const ticketNotDoneThunk = (ticketId) => async (dispatch) => {
+//     const res = await fetch(`/api/tickets/${ticketId}/isnotdone`)
+
+//     if (res.ok) {
+//         const body = await res.json();
+//         dispatch(isTicketDone(body));
+//         return body
+//     } else {
+//         return null;
+//     }
+// };
 
 export default function ticketReducer(state = [], action) {
     switch (action.type) {
