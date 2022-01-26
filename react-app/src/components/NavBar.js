@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { getSingleDepartmentThunk } from '../store/singleDepartment';
 import LogoutButton from './auth/LogoutButton';
+import navLogo from './images/navLogo.png'
 
 const NavBar = () => {
   const { ticketId, departmentId } = useParams()
@@ -38,7 +39,7 @@ const NavBar = () => {
           }
         </li>
         <li>
-          <img className="navLogo" src="./navLogo.png" alt="logo" />
+          <img className="navLogo" src={navLogo} alt="logo" />
         </li>
         <li className='navLogout'>
           <NavLink onClick={clicked} className='socials' to={{ pathname: "https://linkedin.com/in/dylan-welzel-107140221" }} target="_blank" exact={true} activeClassName='active'>

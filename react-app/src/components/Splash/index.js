@@ -2,6 +2,7 @@ import "./splash.css";
 import { NavLink, Redirect } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from "react-redux";
+import logo3 from '../images/logo3.png'
 
 function Splash() {
 
@@ -13,7 +14,7 @@ function Splash() {
 
     return (
         <div>
-            <img className="splashLogo" src="./logo3.png" alt="logo" />
+            <img className="splashLogo" src={logo3} alt="logo" />
             <div className="splashContainer">
                 {/* <div className="bannerContainer">
                 <h1>Kostco Connect</h1>
