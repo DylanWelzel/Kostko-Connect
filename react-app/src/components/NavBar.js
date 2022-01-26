@@ -20,7 +20,9 @@ const NavBar = () => {
   }, [])
 
   function clicked() {
-    if (socket) {
+    if (ticketId && socket) {
+      socket.emit("leaveroom", { ticketId })
+      console.log('leaving room', ticketId)
       socket.disconnect()
     }
   }
