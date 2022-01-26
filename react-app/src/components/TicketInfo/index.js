@@ -34,9 +34,9 @@ function TicketInfo() {
         }
         if (socket) {
             socket.emit('joinroom', { ticketId })
-        }
-        return () => {
-            socket.disconnect()
+            return () => {
+                socket.disconnect()
+            }
         }
     }, [])
 
@@ -48,10 +48,10 @@ function TicketInfo() {
             socket.on('message', (msg) => {
                 const { allMessages } = msg
                 dispatch(addMessage(allMessages))
+                return () => {
+                    socket.disconnect()
+                }
             })
-            return () => {
-                socket.disconnect()
-            }
         }
     }, [socket])
 
