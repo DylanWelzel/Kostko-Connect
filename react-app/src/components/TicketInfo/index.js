@@ -98,7 +98,6 @@ function TicketInfo() {
                     <h2 className="location">{ticket.location}</h2>
                     <div className="description">{ticket.description}</div>
                     <div className="userName">Created by {user.username}</div>
-                    <input className="isDone" type="checkbox" /> done
                 </div>
                 <div className="messagingContainer">
                     <div className="chatTitle">Chat</div>

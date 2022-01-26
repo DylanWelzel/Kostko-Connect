@@ -68,8 +68,7 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
                         </div>
                         || isDriver &&
                         <div className='completeContainer'>
-                            <div>Complete</div>
-                            <button onClick={(e) => setStyle(e)}>test</button>
+                            <button className="completeButton" onClick={(e) => setStyle(e)}>Complete</button>
                         </div>
                         || <div className="noButtons"></div>
                     }
@@ -102,8 +101,7 @@ function SingleTicket({ departmentId, ticketId, itemName, location, description,
                         </div>
                         || isDriver &&
                         <div className='completeContainer'>
-                            <div>Complete</div>
-                            <button onClick={(e) => setStyle(e)}>test</button>
+                            <button className="completeButton" onClick={(e) => setStyle(e)}>Complete</button>
                         </div>
                         || <div className="noButtons"></div>
                     }
