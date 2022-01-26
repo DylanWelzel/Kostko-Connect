@@ -41,8 +41,11 @@ const NavBar = () => {
           <img className="navLogo" src="./navLogo.png" alt="logo" />
         </li>
         <li className='navLogout'>
-          <NavLink onClick={clicked} to='/about' exact={true} activeClassName='active'>
-            About Me!
+          <NavLink onClick={clicked} className='socials' to={{ pathname: "https://linkedin.com/in/dylan-welzel-107140221" }} target="_blank" exact={true} activeClassName='active'>
+            LinkedIn
+          </NavLink>
+          <NavLink onClick={clicked} className='socials' to={{ pathname: "https://github.com/dylanwelzel/Kostko-Connect" }} target="_blank" exact={true} activeClassName='active'>
+            Github
           </NavLink>
           <LogoutButton />
         </li>

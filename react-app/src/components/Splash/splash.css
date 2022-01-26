@@ -430,3 +430,7 @@ width: 499.984px;
     margin-top: 20px;
     object-fit: cover;
 }
+
+.socials {
+    background-color: #E31837 !important;
+}
