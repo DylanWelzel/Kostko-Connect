@@ -23,6 +23,8 @@ function Tickets() {
     const [isAdmin, setIsAdmin] = useState(false)
     const [roomId, setRoomId] = useState(null)
     const role = useSelector((state) => state.session.user.role);
+    const [searchQuery, setSearchQuery] = useState('')
+    const [showSearch, setShowSearch] = useState(false)
 
     useEffect(() => {
         if (role === 'admin' || role === 'stocker') {
@@ -38,10 +40,45 @@ function Tickets() {
         dispatch(getSingleDepartmentThunk(departmentId))
     }, [])
 
+    const filterTickets = (tickets, query) => {
+        if (!query) {
+            return tickets;
+        }
+
+        return tickets.filter((ticket) => {
+            const ticketName = ticket.item_name.toLowerCase();
+            return ticketName.includes(query.toLowerCase());
+        });
+    };
+    const filteredTickets = filterTickets(tickets, searchQuery)
+
+    useEffect(() => {
+        if (tickets.length > 4) {
+            setShowSearch(true)
+        } else {
+            setShowSearch(false)
+        }
+    }, [tickets])
+
+
 
     return (
         <>
             <h1 className="deptName">{dept.name}</h1>
+            {
+                showSearch &&
+                <div className="searchContainer">
+                    <input className="ticketSearch"
+                        placeholder="Search Tickets"
+                        type="text"
+                        name="s"
+                        id=""
+                        value={searchQuery}
+                        onInput={e => setSearchQuery(e.target.value)}
+                        autoComplete="off"
+                    />
+                </div>
+            }
             <div className="ticketTitles">
                 <div className="ticketTitles">
                     <div className="nameTitle">Item Name</div>
@@ -51,7 +88,7 @@ function Tickets() {
                 <div className="editTitle"></div>
             </div>
             <div className="ticketList">
-                {tickets && tickets.map(ticket => {
+                {searchQuery.length > 0 && (filteredTickets.map(ticket => {
                     return (
                         <SingleTicket
                             key={ticket.id}
@@ -71,12 +108,38 @@ function Tickets() {
                             setRoomId={setRoomId}
                         />
                     )
-                })}
+                })
+                ) ||
+
+                    tickets && tickets.map(ticket => {
+                        return (
+                            <SingleTicket
+                                key={ticket.id}
+                                departmentId={departmentId}
+                                ticketId={ticket.id}
+                                itemName={ticket.item_name}
+                                location={ticket.location}
+                                description={ticket.description}
+                                departmentId={ticket.department_id}
+                                isDone={ticket.is_done}
+                                setIsEditOpen={setIsEditOpen}
+                                setEditId={setEditId}
+                                ownerId={ticket.owner_id}
+                                setPrevTicketName={setPrevTicketName}
+                                setPrevTicketLocation={setPrevTicketLocation}
+                                setPrevTicketDescription={setPrevTicketDescription}
+                                setRoomId={setRoomId}
+                            />
+                        )
+                    })}
+
             </div>
-            {!tickets.length &&
+            {
+                !tickets.length &&
                 <div className="noTickets">Currently there are no tickets for this department. Add one below!</div>
             }
-            {isAdmin &&
+            {
+                isAdmin &&
                 <div className="addItHereContainer">
                     <button className='primaryBtn' onClick={() => setIsOpen(true)}>
                         Add a Ticket
@@ -84,7 +147,7 @@ function Tickets() {
                 </div>
             }
             {isOpen && <AddTicketModal setIsOpen={setIsOpen} />}
-            {isEditOpen && <EditTicketModal editId={editId} setIsOpen={setIsEditOpen} prevTicketName={prevTicketName} prevTicketLocation={prevTicketLocation} prevTicketDescription={prevTicketDescription} />}
+            {isEditOpen && <EditTicketModal searchQuery={searchQuery} setSearchQuery={setSearchQuery} editId={editId} setIsOpen={setIsEditOpen} prevTicketName={prevTicketName} prevTicketLocation={prevTicketLocation} prevTicketDescription={prevTicketDescription} />}
         </>
     );
 }

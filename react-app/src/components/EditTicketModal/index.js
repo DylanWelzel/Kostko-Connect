@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { editTicketThunk } from "../../store/tickets";
 import "./editticketmodal.css";
 
-const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDescription, prevTicketName }) => {
+const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDescription, prevTicketName, setSearchQuery, searchQuery }) => {
     const [itemName, setItemName] = useState(prevTicketName)
     const [location, setLocation] = useState(prevTicketLocation)
     const [description, setDescription] = useState(prevTicketDescription)
@@ -19,6 +19,9 @@ const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDesc
         const data = await dispatch(editTicketThunk(itemName, location, description, editId))
         if (data.errors) {
             return setErrors(data.errors)
+        }
+        if (searchQuery !== '') {
+            setSearchQuery(itemName)
         }
         return setIsOpen(false)
     }
