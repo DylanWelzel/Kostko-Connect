@@ -16,15 +16,15 @@ const NavBar = () => {
   const socket = useSelector((state) => state.socket);
 
   useEffect(() => {
-    dispatch(getSingleDepartmentThunk(departmentId))
+    if (departmentId) {
+      dispatch(getSingleDepartmentThunk(departmentId))
+    }
   }, [])
 
   function clicked() {
-    if (ticketId && socket) {
-      socket.emit("leaveroom", { ticketId })
-      console.log('leaving room', ticketId)
-      socket.disconnect()
-    }
+    socket.emit("leaveroom", { ticketId })
+    socket.disconnect()
+    console.log('back button socket', socket)
   }
 
   return (

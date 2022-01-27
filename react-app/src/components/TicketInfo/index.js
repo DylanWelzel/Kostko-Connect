@@ -23,35 +23,28 @@ function TicketInfo() {
     const department = useSelector((state) => state.singleDepartment);
     const socket = useSelector((state) => state.socket);
 
-    function back() {
-        socket.emit("leaveroom", { ticketId })
-        setLeave(true)
-    }
-
     useEffect(() => {
-        if (!socket) {
-            dispatch(getSocket())
-        }
-        if (socket) {
-            socket.emit('joinroom', { ticketId })
-            return () => {
-                socket.disconnect()
-            }
-        }
+        dispatch(getSocket())
+        console.log('got socket')
     }, [])
 
     useEffect(() => {
-        if (!socket) {
-            dispatch(getSocket())
+        if (socket) {
+            socket.emit("joinroom", { ticketId })
+            console.log(socket, 'join room socket')
         }
+    }, [socket]);
+
+    useEffect(() => {
         if (socket) {
             socket.on('message', (msg) => {
                 const { allMessages } = msg
                 dispatch(addMessage(allMessages))
-                return () => {
-                    socket.disconnect()
-                }
             })
+            console.log(socket, 'message socket')
+            return () => {
+                socket.disconnect()
+            }
         }
     }, [socket])
 

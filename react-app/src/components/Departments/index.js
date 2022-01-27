@@ -24,8 +24,6 @@ function Departments() {
         }
     }, [])
 
-
-
     useEffect(() => {
         dispatch(getDepartmentsThunk())
     }, [dispatch])

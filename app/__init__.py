@@ -90,14 +90,18 @@ def handleMessage(msg):
 @socketIo.on('joinroom')
 def on_join(data):
     if(data):
+        print(data, 'dataaaaa')
         room = f"ticket {data['ticketId']}"
+        print(room, 'rooooooom')
         join_room(room)
 
 
 @socketIo.on('leaveroom')
 def on_leave(data):
     if(data):
+        print(data, 'dataaaaa')
         room = f"ticket {data['ticketId']}"
+        print(room, 'rooooooom')
         leave_room(room)
 
 

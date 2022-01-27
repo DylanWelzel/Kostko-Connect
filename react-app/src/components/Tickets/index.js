@@ -23,18 +23,10 @@ function Tickets() {
     const [isAdmin, setIsAdmin] = useState(false)
     const [roomId, setRoomId] = useState(null)
     const role = useSelector((state) => state.session.user.role);
-    const socket = useSelector((state) => state.socket);
 
     useEffect(() => {
         if (role === 'admin' || role === 'stocker') {
             setIsAdmin(true)
-        }
-    }, [])
-
-    useEffect(() => {
-        console.log(socket, 'sockettttt')
-        if (!socket?.connected) {
-            dispatch(getSocket());
         }
     }, [])
 
