@@ -11,7 +11,11 @@ Kostco Connect allows users to:
 * create/edit/delete and view tickets inside of departments
 * LIVE chat for each ticket
 * able to search for specific tickets
-* choose a 'role' that allows specific features
+
+users can select a 'role' on signup:
+* drivers can mark tickets complete
+* stockers can add/edit/delete their own tickets
+* admins can add/edit/delete departments
 
 ## Overall Structure
 ### Back End
