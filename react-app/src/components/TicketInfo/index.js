@@ -25,13 +25,11 @@ function TicketInfo() {
 
     useEffect(() => {
         dispatch(getSocket())
-        console.log('got socket')
     }, [])
 
     useEffect(() => {
         if (socket) {
             socket.emit("joinroom", { ticketId })
-            console.log(socket, 'join room socket')
         }
     }, [socket]);
 
@@ -41,7 +39,6 @@ function TicketInfo() {
                 const { allMessages } = msg
                 dispatch(addMessage(allMessages))
             })
-            console.log(socket, 'message socket')
             return () => {
                 socket.disconnect()
             }
