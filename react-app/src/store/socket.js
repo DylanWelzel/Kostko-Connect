@@ -8,7 +8,7 @@ export const getSocket = () => {
 }
 //"https://kostcoconnect.herokuapp.com/"
 //"http://localhost:5000/"
-const endPoint = "http://kostcoconnect.herokuapp.com/";
+const endPoint = "http://localhost:5000/";
 
 const socket = (state = null, action) => {
     switch (action.type) {
