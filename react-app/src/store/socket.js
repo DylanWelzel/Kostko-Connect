@@ -13,9 +13,7 @@ const endPoint = "https://kostcoconnect.herokuapp.com/";
 const socket = (state = null, action) => {
     switch (action.type) {
         case GET_SOCKET:
-            return io(`${endPoint}`, {
-                reconnectionDelayMax: 10000
-            });
+            return io(`${endPoint}`);
         default:
             return state
     }
