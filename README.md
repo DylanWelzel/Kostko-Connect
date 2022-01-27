@@ -28,7 +28,7 @@ The back end was built with [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 The front end was built with React.
 
 ### Technologies
-BadReads uses:
+Kostco Connect uses:
 * JavaScript
 * Python
 * React
