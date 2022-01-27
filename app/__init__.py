@@ -49,6 +49,8 @@ socketIo = SocketIO(app=app, cors_allowed_origins='*')
 # Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
+
+
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':

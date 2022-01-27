@@ -22,9 +22,11 @@ const NavBar = () => {
   }, [])
 
   function clicked() {
-    socket.emit("leaveroom", { ticketId })
-    socket.disconnect()
-    console.log('back button socket', socket)
+    if (ticketId) {
+      socket.emit("leaveroom", { ticketId })
+      socket.disconnect()
+      console.log('back button socket', socket)
+    }
   }
 
   return (
