@@ -8,6 +8,7 @@ import AddTicketModal from "../AddTicketModal";
 import EditTicketModal from "../EditTicketModal";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
 import { getSocket } from "../../store/socket";
+import notickets from '../images/notickets.svg'
 
 function Tickets() {
     const dispatch = useDispatch();
@@ -79,14 +80,16 @@ function Tickets() {
                     />
                 </div>
             }
-            <div className="ticketTitles">
+            {tickets.length > 0 &&
                 <div className="ticketTitles">
-                    <div className="nameTitle">Item Name</div>
-                    <div className="locationTitle">Location</div>
-                    <div className="descriptionTitle">Description</div>
+                    <div className="ticketTitles">
+                        <div className="nameTitle">Item Name</div>
+                        <div className="locationTitle">Location</div>
+                        <div className="descriptionTitle">Description</div>
+                    </div>
+                    <div className="editTitle"></div>
                 </div>
-                <div className="editTitle"></div>
-            </div>
+            }
             <div className="ticketList">
                 {searchQuery.length > 0 && (filteredTickets.map(ticket => {
                     return (
@@ -136,7 +139,9 @@ function Tickets() {
             </div>
             {
                 !tickets.length &&
-                <div className="noTickets">Currently there are no tickets for this department. Add one below!</div>
+                <div className="noTickets">Currently there are no tickets for this department. Add one below!
+                    <img src={notickets}></img>
+                </div>
             }
             {
                 isAdmin &&
