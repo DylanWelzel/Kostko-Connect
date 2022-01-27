@@ -11,6 +11,7 @@ Kostco Connect allows users to:
 * create/edit/delete and view tickets inside of departments
 * LIVE chat for each ticket
 * able to search for specific tickets
+* choose a 'role' that allows specific features
 
 ## Overall Structure
 ### Back End
