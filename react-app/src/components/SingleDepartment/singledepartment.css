@@ -49,8 +49,9 @@
     width: fit-content;
     width: 50%;
     margin: 0 auto;
-    color: #444444
-
+    color: #444444;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .addDepartmentContainer {
