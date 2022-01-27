@@ -36,7 +36,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-height: 60vh;
+    max-height: 50vh;
     overflow-y: scroll;
     margin-bottom: 30px;
 }
@@ -82,4 +82,38 @@
 .editTitle {
     width: 111px;
     margin-right: 65px;
+}
+
+.searchContainer {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ticketSearch {
+    width: 20vw;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgba(0,0,0,.87);
+    display: flex;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 4px 4px 0 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity,transform,color;
+    font-size: 1rem;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    align-self: center;
+    justify-self: center;
+    padding: 20px;
 }
