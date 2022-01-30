@@ -25,7 +25,6 @@ const NavBar = () => {
     if (ticketId) {
       socket.emit("leaveroom", { ticketId })
       socket.disconnect()
-      console.log('back button socket', socket)
     }
   }
 
@@ -50,7 +49,7 @@ const NavBar = () => {
             LinkedIn
           </NavLink>
           <NavLink onClick={clicked} className='socials' to={{ pathname: "https://github.com/dylanwelzel/Kostko-Connect" }} target="_blank" exact={true} activeClassName='active'>
-            Github
+            GitHub
           </NavLink>
           <LogoutButton />
         </li>

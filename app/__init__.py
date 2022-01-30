@@ -92,18 +92,14 @@ def handleMessage(msg):
 @socketIo.on('joinroom')
 def on_join(data):
     if(data):
-        print(data, 'dataaaaa')
         room = f"ticket {data['ticketId']}"
-        print(room, 'rooooooom')
         join_room(room)
 
 
 @socketIo.on('leaveroom')
 def on_leave(data):
     if(data):
-        print(data, 'dataaaaa')
         room = f"ticket {data['ticketId']}"
-        print(room, 'rooooooom')
         leave_room(room)
 
 
@@ -114,13 +110,11 @@ clients = 0
 def on_connect():
     global clients
     clients += 1
-    print('Scocket connected', clients)
 
     @socketIo.on('disconnect')
     def disc():
         global clients
         clients -= 1
-        print('Socket disconnected', clients)
 
 
 if __name__ == '__main__':
