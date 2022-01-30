@@ -39,7 +39,6 @@ function Splash() {
                         pathname: "https://linkedin.com/in/dylan-welzel-107140221"
                     }}
                     target="_blank"
-                    className="socials"
                 >
                     <h2>LinkedIn</h2>
                 </NavLink>
@@ -51,7 +50,6 @@ function Splash() {
                         pathname: "https://github.com/DylanWelzel/Kostko-Connect"
                     }}
                     target="_blank"
-                    className="socials"
                 >
                     <h2>GitHub</h2>
                 </NavLink>
