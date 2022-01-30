@@ -13,28 +13,50 @@ function Splash() {
     }
 
     return (
-        <div>
-            <img className="splashLogo" src={logo3} alt="logo" />
-            <div className="splashContainer">
-                {/* <div className="bannerContainer">
-                <h1>Kostco Connect</h1>
-            </div> */}
-                <div className="formContainer">
-                    <NavLink
-                        to='/login'
-                        className="loginContainer"
-                    >
-                        <h2>Login</h2>
-                    </NavLink>
-                    <NavLink
-                        to='/sign-up'
-                        className="loginContainer"
-                    >
-                        <h2>Sign Up</h2>
-                    </NavLink>
+        <>
+            <div>
+                <img className="splashLogo" src={logo3} alt="logo" />
+                <div className="splashContainer">
+                    <div className="formContainer">
+                        <NavLink
+                            to='/login'
+                            className="loginContainer"
+                        >
+                            <h2>Login</h2>
+                        </NavLink>
+                        <NavLink
+                            to='/sign-up'
+                            className="loginContainer"
+                        >
+                            <h2>Sign Up</h2>
+                        </NavLink>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div className="test">
+                <NavLink
+                    to={{
+                        pathname: "https://linkedin.com/in/dylan-welzel-107140221"
+                    }}
+                    target="_blank"
+                    className="socials"
+                >
+                    <h2>LinkedIn</h2>
+                </NavLink>
+                <div className="createdby">
+                    Created by Dylan Welzel
+                </div>
+                <NavLink
+                    to={{
+                        pathname: "https://github.com/DylanWelzel/Kostko-Connect"
+                    }}
+                    target="_blank"
+                    className="socials"
+                >
+                    <h2>GitHub</h2>
+                </NavLink>
+            </div>
+        </>
     );
 }
 
