@@ -32,7 +32,7 @@ export const createOneMessage = (ticketId, content) => async (dispatch) => {
     if (res.ok) {
         const message = await res.json();
         // remove dispatch for websockets
-        // dispatch(addMessage(message))
+        dispatch(addMessage(message))
         return message
     }
     return null

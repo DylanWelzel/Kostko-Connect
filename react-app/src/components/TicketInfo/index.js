@@ -23,27 +23,29 @@ function TicketInfo() {
     const department = useSelector((state) => state.singleDepartment);
     const socket = useSelector((state) => state.socket);
 
-    useEffect(() => {
-        dispatch(getSocket())
-    }, [])
+    // WebSockets
 
-    useEffect(() => {
-        if (socket) {
-            socket.emit("joinroom", { ticketId })
-        }
-    }, [socket]);
+    // useEffect(() => {
+    //     dispatch(getSocket())
+    // }, [])
 
-    useEffect(() => {
-        if (socket) {
-            socket.on('message', (msg) => {
-                const { allMessages } = msg
-                dispatch(addMessage(allMessages))
-            })
-            return () => {
-                socket.disconnect()
-            }
-        }
-    }, [socket])
+    // useEffect(() => {
+    //     if (socket) {
+    //         socket.emit("joinroom", { ticketId })
+    //     }
+    // }, [socket]);
+
+    // useEffect(() => {
+    //     if (socket) {
+    //         socket.on('message', (msg) => {
+    //             const { allMessages } = msg
+    //             dispatch(addMessage(allMessages))
+    //         })
+    //         return () => {
+    //             socket.disconnect()
+    //         }
+    //     }
+    // }, [socket])
 
     useEffect(() => {
         dispatch(getSingleDepartmentThunk(departmentId))
@@ -67,7 +69,7 @@ function TicketInfo() {
         e.preventDefault()
         if (messageContent !== "") {
             const msg = await dispatch(createOneMessage(ticketId, messageContent));
-            socket.emit("message", { ticketId, session, allMessages: msg });
+            // socket.emit("message", { ticketId, session, allMessages: msg });
             setMessageContent("");
         } else {
             alert("Please add message");
