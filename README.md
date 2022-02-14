@@ -19,13 +19,10 @@ Users can select a 'role' on signup:
 
 ## Overall Structure
 ### Back End
-The back end was built with [Flask](https://flask.palletsprojects.com/en/2.0.x/), and it utilizes a postgreSQL database.
-
-#### Database Diagram
-![Database Diagram](https://github.com/DylanWelzel/Costco-Connect/blob/main/react-app/public/Screen%20Shot%202022-01-18%20at%2011.22.50%20AM.png)
+The back end was built with [Flask](https://flask.palletsprojects.com/en/2.0.x/), and it utilizes a PostgreSQL database.
 
 ### Front End
-The front end was built with React.
+The front end was built with React and Redux.
 
 ### Technologies
 Kostco Connect uses:
@@ -39,7 +36,10 @@ Kostco Connect uses:
 ## Contributors
 * [Dylan Welzel](https://github.com/DylanWelzel)
 
-
+## Preview
+![Imgur](https://i.imgur.com/WrqxLCT.png)
+![Imgur](https://i.imgur.com/aFmCKUn.png)
+![Imgur](https://i.imgur.com/IpkC6gZ.png)
 
 
 
