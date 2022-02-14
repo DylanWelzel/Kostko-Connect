@@ -32,6 +32,7 @@ Kostco Connect uses:
 * JavaScript
 * Python
 * React
+* WebSockets
 * CSS
 
 
