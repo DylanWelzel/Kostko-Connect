@@ -47,6 +47,14 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    font-weight: 400;
+    display: block;
+    font-size: 1.5em;
+    color: #444444;
+
 }
 
 .noTickets img {

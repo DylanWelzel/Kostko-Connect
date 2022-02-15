@@ -167,3 +167,31 @@
     border-top-style: solid;
     border-top-color: rgb(204, 204, 204);
 }
+
+.nomessagescontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomessages {
+    width: 80%;
+    height: 80%;
+}
+
+.nomessagestext {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* margin: 5px auto; */
+    margin: 0;
+    margin-top: 10px;
+
+    font-weight: 400;
+    display: block;
+    font-size: 1.5em;
+    color: #444444;
+
+}

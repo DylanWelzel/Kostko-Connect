@@ -7,6 +7,7 @@ import { getSingleUserThunk } from "../../store/singleUser";
 import { addMessage, createOneMessage, getAllMessages } from "../../store/messages";
 import { getSocket } from "../../store/socket";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
+import nomessages from '../images/nomessages.svg'
 
 
 function TicketInfo() {
@@ -113,6 +114,12 @@ function TicketInfo() {
                                     </div>
                                 )
                             })}
+                            {!messages.length &&
+                                <div className="nomessagescontainer">
+                                    <img className="nomessages" src={nomessages} />
+                                    <div className="nomessagestext">Start chatting with your Forklift Driver or Stocker!</div>
+                                </div>
+                            }
                         </ul>
                         <div className="messageDivider"></div>
                         <form onSubmit={postMessage}>
