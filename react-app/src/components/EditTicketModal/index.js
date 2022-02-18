@@ -46,23 +46,47 @@ const EditTicketModal = ({ setIsOpen, editId, prevTicketLocation, prevTicketDesc
                     <div className='modalContent'>
                         Location
                     </div>
-                    <input
+                    <div className="select-wrapper">
+                        <select
+                            className='selectModalInput'
+                            defaultValue={location}
+                            onChange={(e) => setLocation(e.target.value)}>
+                            <option value="122 A1">122 A1</option>
+                            <option value="122 B1">122 B1</option>
+                            <option value="122 C1">122 C1</option>
+                            <option value="122 D1">122 D1</option>
+                            <option value="122 D1">122 D1</option>
+                        </select>
+                    </div>
+                    {/* <input
                         required
                         className='modalInput'
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
-                    />
+                    /> */}
                     <div className='modalContent'>
                         Description
                     </div>
-                    <input
+                    <div className="select-wrapper">
+                        <select
+                            className='selectModalInput'
+                            defaultValue={description}
+                            onChange={(e) => setDescription(e.target.value)}>
+                            <option value="10 pounds">10 pounds</option>
+                            <option value="10 gallons">10 gallons</option>
+                            <option value="10 boxes">10 boxes</option>
+                            <option value="10 bottles">10 bottles</option>
+                            <option value="Whole pallet">Whole pallet</option>
+                        </select>
+                    </div>
+                    {/* <input
                         required
                         className='modalInput'
                         type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                    />
+                    /> */}
                     {errors && errors.map((error, ind) => (
                         <div className='modalErrors' key={ind}>{error}</div>
                     ))}

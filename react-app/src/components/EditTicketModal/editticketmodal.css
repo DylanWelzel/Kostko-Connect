@@ -1,0 +1,38 @@
+.selectModalInput {
+	appearance: none;
+	-webkit-appearance: none;
+	/* opinionated design defaults */
+	block-size: 2rem;
+	inline-size: 50%;
+	/* border: 1px solid #000; */
+	border-radius: .25rem;
+	background-color: #fff;
+	color: #000;
+
+	padding-inline-start: .5rem;
+	/* compensate for arrow icon, so text doesn't overlap it */
+	padding-inline-end: 2rem;
+
+	/* arrow icon */
+	background-image:
+		conic-gradient(
+			from 45deg,
+			transparent 0% 25%,
+			transparent 0% 75%,
+			currentColor 0%
+		);
+
+	background-size: 12px 12px;
+	background-position: right 1rem top calc(50% + 4px);
+	background-repeat: no-repeat;
+
+    font-weight: 500;
+    font-size: 16px;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }

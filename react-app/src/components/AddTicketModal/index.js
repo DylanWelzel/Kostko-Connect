@@ -7,8 +7,8 @@ import "./addticketmodal.css";
 
 const AddTicketModal = ({ setIsOpen }) => {
     const [itemName, setItemName] = useState('')
-    const [location, setLocation] = useState('')
-    const [description, setDescription] = useState('')
+    const [location, setLocation] = useState('122 A1')
+    const [description, setDescription] = useState('10 pounds')
     const [errors, setErrors] = useState([]);
     const { departmentId } = useParams()
     const userId = useSelector((state) => state.session.user.id);
@@ -23,6 +23,7 @@ const AddTicketModal = ({ setIsOpen }) => {
         }
         return setIsOpen(false)
     }
+    console.log(description, location)
 
     return (
         <>
@@ -46,25 +47,47 @@ const AddTicketModal = ({ setIsOpen }) => {
                     <div className='modalContent'>
                         Location
                     </div>
-                    <input
+                    <div className="select-wrapper">
+                        <select
+                            className='selectModalInput'
+                            defaultValue={location}
+                            onChange={(e) => setLocation(e.target.value)}>
+                            <option value="122 A1">122 A1</option>
+                            <option value="122 B1">122 B1</option>
+                            <option value="122 C1">122 C1</option>
+                            <option value="122 D1">122 D1</option>
+                            <option value="122 D1">122 D1</option>
+                        </select>
+                    </div>
+                    {/* <input
                         required
                         className='modalInput'
                         type="text"
-                        placeholder="124 B4"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
-                    />
+                    /> */}
                     <div className='modalContent'>
                         Description
                     </div>
-                    <input
+                    <div className="select-wrapper">
+                        <select
+                            className='selectModalInput'
+                            defaultValue={description}
+                            onChange={(e) => setDescription(e.target.value)}>
+                            <option value="10 pounds">10 pounds</option>
+                            <option value="10 gallons">10 gallons</option>
+                            <option value="10 boxes">10 boxes</option>
+                            <option value="10 bottles">10 bottles</option>
+                            <option value="Whole pallet">Whole pallet</option>
+                        </select>
+                    </div>
+                    {/* <input
                         required
                         className='modalInput'
                         type="text"
-                        placeholder="2 Layers"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                    />
+                    /> */}
                     {errors && errors.map((error, ind) => (
                         <div className='modalErrors' key={ind}>{error}</div>
                     ))}
