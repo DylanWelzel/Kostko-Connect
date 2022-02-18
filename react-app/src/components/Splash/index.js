@@ -1,12 +1,14 @@
 import "./splash.css";
 import { NavLink, Redirect } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import logo3 from '../images/logo3.png'
+import SplashModal from "../SplashModal";
 
 function Splash() {
 
     const user = useSelector(state => state.session.user);
+    const [isOpen, setIsOpen] = useState(true)
 
     if (user) {
         return <Redirect to='/departments' />;
@@ -33,6 +35,11 @@ function Splash() {
                     </div>
                 </div>
             </div>
+            {isOpen &&
+                <div className="about">
+                    <SplashModal setIsOpen={setIsOpen} />
+                </div>
+            }
             <div className="test">
                 <NavLink
                     to={{
