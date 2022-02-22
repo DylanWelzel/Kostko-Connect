@@ -84,7 +84,6 @@ function TicketInfo() {
 
     return (
         <div>
-            {/* <button onClick={back}>back to {department?.name}</button> */}
             <div className="pageContainer">
                 <div className="ticketInfoContainer">
                     <h1 className="itemName">{ticket.item_name}</h1>
