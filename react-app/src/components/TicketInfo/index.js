@@ -7,19 +7,19 @@ import { getSingleUserThunk } from "../../store/singleUser";
 import { addMessage, createOneMessage, getAllMessages } from "../../store/messages";
 import { getSocket } from "../../store/socket";
 import { getSingleDepartmentThunk } from "../../store/singleDepartment";
-import nomessages from '../images/nomessages.svg'
+import nomessages from '../images/nomessages.svg';
 
 
 function TicketInfo() {
-    const dispatch = useDispatch()
-    const { ticketId, departmentId } = useParams()
-    const [messageContent, setMessageContent] = useState('')
-    const [leave, setLeave] = useState(false)
+    const dispatch = useDispatch();
+    const { ticketId, departmentId } = useParams();
+    const [messageContent, setMessageContent] = useState('');
+    const [leave, setLeave] = useState(false);
 
     const ticket = useSelector((state) => state.singleTicket);
     const messages = useSelector((state) => state.messages);
-    const user = useSelector(state => state.singleUser)
-    const loggedInUsername = useSelector(state => state.session.user.username)
+    const user = useSelector(state => state.singleUser);
+    const loggedInUsername = useSelector(state => state.session.user.username);
     const session = useSelector((state) => state.session.user);
     const department = useSelector((state) => state.singleDepartment);
     const socket = useSelector((state) => state.socket);
@@ -27,60 +27,60 @@ function TicketInfo() {
     // WebSockets
 
     useEffect(() => {
-        dispatch(getSocket())
-    }, [])
+        dispatch(getSocket());
+    }, []);
 
     useEffect(() => {
         if (socket) {
-            socket.emit("joinroom", { ticketId })
-        }
+            socket.emit("joinroom", { ticketId });
+        };
     }, [socket]);
 
     useEffect(() => {
         if (socket) {
             socket.on('message', (msg) => {
-                const { allMessages } = msg
-                dispatch(addMessage(allMessages))
-            })
+                const { allMessages } = msg;
+                dispatch(addMessage(allMessages));
+            });
             return () => {
-                socket.disconnect()
-            }
-        }
-    }, [socket])
+                socket.disconnect();
+            };
+        };
+    }, [socket]);
 
     useEffect(() => {
-        dispatch(getSingleDepartmentThunk(departmentId))
-    }, [])
+        dispatch(getSingleDepartmentThunk(departmentId));
+    }, []);
 
     useEffect(() => {
-        dispatch(getSingleTicketThunk(ticketId))
-    }, [])
+        dispatch(getSingleTicketThunk(ticketId));
+    }, []);
 
     useEffect(() => {
         if (ticket.owner_id) {
-            dispatch(getSingleUserThunk(ticket.owner_id))
-        }
-    }, [ticket])
+            dispatch(getSingleUserThunk(ticket.owner_id));
+        };
+    }, [ticket]);
 
     useEffect(() => {
-        dispatch(getAllMessages(ticketId))
-    }, [dispatch])
+        dispatch(getAllMessages(ticketId));
+    }, [dispatch]);
 
     async function postMessage(e) {
-        e.preventDefault()
+        e.preventDefault();
         if (messageContent !== "") {
             const msg = await dispatch(createOneMessage(ticketId, messageContent));
             socket.emit("message", { ticketId, session, allMessages: msg });
             setMessageContent("");
         } else {
             alert("Please add message");
-        }
-    }
+        };
+    };
 
 
     if (leave) {
         return <Redirect to={`/departments/${department.id}/tickets`} />
-    }
+    };
 
     return (
         <div>
