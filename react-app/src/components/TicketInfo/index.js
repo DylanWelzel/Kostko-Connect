@@ -36,6 +36,7 @@ function TicketInfo() {
         };
     }, [socket]);
 
+
     useEffect(() => {
         if (socket) {
             socket.on('message', (msg) => {
