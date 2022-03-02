@@ -26,27 +26,27 @@ function TicketInfo() {
 
     // WebSockets
 
-    // useEffect(() => {
-    //     dispatch(getSocket())
-    // }, [])
+    useEffect(() => {
+        dispatch(getSocket())
+    }, [])
 
-    // useEffect(() => {
-    //     if (socket) {
-    //         socket.emit("joinroom", { ticketId })
-    //     }
-    // }, [socket]);
+    useEffect(() => {
+        if (socket) {
+            socket.emit("joinroom", { ticketId })
+        }
+    }, [socket]);
 
-    // useEffect(() => {
-    //     if (socket) {
-    //         socket.on('message', (msg) => {
-    //             const { allMessages } = msg
-    //             dispatch(addMessage(allMessages))
-    //         })
-    //         return () => {
-    //             socket.disconnect()
-    //         }
-    //     }
-    // }, [socket])
+    useEffect(() => {
+        if (socket) {
+            socket.on('message', (msg) => {
+                const { allMessages } = msg
+                dispatch(addMessage(allMessages))
+            })
+            return () => {
+                socket.disconnect()
+            }
+        }
+    }, [socket])
 
     useEffect(() => {
         dispatch(getSingleDepartmentThunk(departmentId))
@@ -70,7 +70,7 @@ function TicketInfo() {
         e.preventDefault()
         if (messageContent !== "") {
             const msg = await dispatch(createOneMessage(ticketId, messageContent));
-            // socket.emit("message", { ticketId, session, allMessages: msg });
+            socket.emit("message", { ticketId, session, allMessages: msg });
             setMessageContent("");
         } else {
             alert("Please add message");
